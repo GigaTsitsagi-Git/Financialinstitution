@@ -1,3 +1,5 @@
+package models;
+
 public class Account
 {
     private String _account_number;

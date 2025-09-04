@@ -1,3 +1,7 @@
+package transaction;
+
+import models.Account;
+
 public class Transaction
 {
     private String _message;

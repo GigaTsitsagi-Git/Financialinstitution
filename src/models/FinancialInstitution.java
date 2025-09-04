@@ -1,3 +1,5 @@
+package models;
+
 public class FinancialInstitution
 {
     private String _name;

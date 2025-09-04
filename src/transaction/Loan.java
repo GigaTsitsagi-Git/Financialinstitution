@@ -1,3 +1,8 @@
+package transaction;
+
+import models.Account;
+import models.Customer;
+
 public class Loan
 {
     private Customer _borrower;

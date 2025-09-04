@@ -1,3 +1,8 @@
+package trading;
+
+import models.Account;
+import models.Customer;
+
 public class Trader
 {
     private String _trader_id;

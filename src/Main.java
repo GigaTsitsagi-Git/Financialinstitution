@@ -1,8 +1,16 @@
+import models.*;
+import services.ReportGenerator;
+import trading.Stock;
+import trading.Trader;
+import transaction.Transaction;
+
+import java.math.BigDecimal;
+
 public class Main
 {
     public static void main(String[] args)
     {
-        FinancialInstitution fi = new FinancialInstitution("Bank of Georgia", "Tbilisi");
+        FinancialInstitution fi = new FinancialInstitution("models.Bank of Georgia", "Tbilisi");
 
         Bank bank = new Bank();
         bank.set_institution(fi);
@@ -32,10 +40,10 @@ public class Main
         savings_acc.set_account_number("ACC004");
         savings_acc.set_balance(2000.0);
 
-        // Creating CheckingAccount
+        // Creating models.CheckingAccount
         CheckingAccount checkingAccount = new CheckingAccount(customer_alice,checking_acc,250.0);
 
-        //Creating SavingsAccount
+        //Creating models.SavingsAccount
         SavingsAccount savingsAccount = new SavingsAccount(customer_bob,savings_acc,12.5);
 
         // Link accounts to customers
@@ -50,22 +58,22 @@ public class Main
         bank.add_account(account_alice);
         bank.add_account(account_bob);
 
-        //Creating Trader
+        //Creating trading.Trader
         Trader trader = new Trader("0", customer_bob);
         trader.show_customer_accounts();
 
-        //Creating Stock
+        //Creating trading.Stock
         Stock stock_bog = new Stock("BOG", 100000, 1200);
-        double net_worth_bog = stock_bog.get_net_worth();
+        BigDecimal net_worth_bog = stock_bog.get_net_worth();
         System.out.println("Net worth of bog is: " + net_worth_bog);
-        
+
         //Creating reportGenerator
         ReportGenerator reportGenerator = new ReportGenerator();
 
         //before everything
         reportGenerator.genererate_customer_report(customer_bob);
 
-        // making Transaction
+        // making transaction.Transaction
         Transaction transaction = new Transaction(account_alice,account_bob,100.0,"test");
 
 

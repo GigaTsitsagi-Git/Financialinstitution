@@ -1,3 +1,7 @@
+package trading;
+
+import java.math.BigDecimal;
+
 public class Stock
 {
     private String _company_name;
@@ -36,8 +40,8 @@ public class Stock
         this._price_per_share = _price_per_share;
     }
 
-    public double get_net_worth()
+    public BigDecimal get_net_worth()
     {
-        return _shares * _price_per_share;
+        return BigDecimal.valueOf(_shares).multiply(BigDecimal.valueOf(_price_per_share));
     }
 }

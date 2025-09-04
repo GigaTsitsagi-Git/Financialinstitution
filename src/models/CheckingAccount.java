@@ -1,3 +1,5 @@
+package models;
+
 public class CheckingAccount
 {
     private Account _base_account;
