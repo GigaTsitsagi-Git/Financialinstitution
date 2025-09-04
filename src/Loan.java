@@ -4,7 +4,7 @@ public class Loan
     private double _amount;
     private double _interest_rate;
 
-    Loan(Customer borrower, double amount, double interest_rate)
+    public Loan(Customer borrower, double amount, double interest_rate)
     {
         _borrower = borrower;
         _amount = amount;

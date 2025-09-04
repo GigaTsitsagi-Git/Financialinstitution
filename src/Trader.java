@@ -19,4 +19,16 @@ public class Trader
     {
         return _trader_id;
     }
+
+    public void show_customer_accounts() {
+        if (_customer != null && _customer.get_accounts() != null) {
+            System.out.println("Accounts for customer " + _customer.get_name() + ":");
+            for (Account acc : _customer.get_accounts()) {
+                System.out.println(" - " + acc.get_account_number() + " : " + acc.get_balance());
+            }
+        } else {
+            System.out.println("No customer or accounts found for this trader.");
+        }
+    }
+
 }

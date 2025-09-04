@@ -30,12 +30,17 @@ public class Transaction
         return _amount;
     }
 
-    public void transaction()
+    public Transaction(Account from, Account to, double amount, String message)
     {
+        _from = from;
+        _to = to;
+        _amount = amount;
+        _message = message;
         if(_from.get_balance() > _amount)
         {
             _from.set_balance(_from.get_balance() - _amount);
             _to.set_balance(_to.get_balance() + _amount);
+            System.out.println("Transfer completed successfully. Message:" + _message);
         }
         else
         {

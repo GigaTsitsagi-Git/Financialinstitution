@@ -5,7 +5,7 @@ public class FinancialInstitution
 
     static private int institution_count = 0;
 
-    FinancialInstitution(String name, String address)
+    public FinancialInstitution(String name, String address)
     {
         _name = name;
         _address = address;

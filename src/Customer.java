@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Customer
@@ -14,6 +15,12 @@ public class Customer
         _name = name;
     }
 
+    public Customer()
+    {
+        _accounts = new ArrayList<>();
+    }
+
+
     public Account get_accaunt_by_account_number(String account_number)
     {
         for(int i = 0; i < _accounts.size(); i++)
@@ -29,7 +36,7 @@ public class Customer
     }
     public void add_account(Account account)
     {
-        if (!_accounts.contains(account))
+        if (_accounts.isEmpty() || !_accounts.contains(account))
         {
             _accounts.add(account);
         }

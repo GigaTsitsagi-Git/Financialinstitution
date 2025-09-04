@@ -8,5 +8,5 @@ public class ReportGenerator
             System.out.println("Account: " + acc.get_account_number() + " | Balance: " + acc.get_balance());
         }
     }
-    
+
 }
