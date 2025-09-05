@@ -1,26 +1,24 @@
 package models;
 
-public class Account
-{
-    private String _account_number;
-    private double _balance;
+public class Account {
+
+    private String account_number;
+    private double balance;
 
 
+    public String getAccountNumber() {
+        return this.account_number;
+    }
 
-    public String get_account_number()
-    {
-        return _account_number;
+    public void setAccountNumber(String accountNumber) {
+        this.account_number = accountNumber;
     }
-    public void set_account_number(String accountNumber)
-    {
-        _account_number = accountNumber;
+
+    public double getBalance() {
+        return this.balance;
     }
-    public double get_balance()
-    {
-        return _balance;
-    }
-    public void set_balance(double balance)
-    {
-        _balance = balance;
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 }

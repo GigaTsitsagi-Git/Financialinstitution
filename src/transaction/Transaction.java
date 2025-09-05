@@ -4,52 +4,54 @@ import models.Account;
 
 public class Transaction
 {
-    private String _message;
-    private Account _from;
-    private Account _to;
-    private double _amount;
-
-    public void set_message(String _message)
-    {
-        this._message = _message;
-    }
-    public String get_message()
-    {
-        return _message;
-    }
-    public void from_this_account(Account account)
-    {
-        _from = account;
-    }
-    public void to_this_account(Account account)
-    {
-        _to = account;
-    }
-    public void set_amount(double _amount)
-    {
-        this._amount = _amount;
-    }
-    public double get_amount()
-    {
-        return _amount;
-    }
+    private String message;
+    private Account from;
+    private Account to;
+    private double amount;
 
     public Transaction(Account from, Account to, double amount, String message)
     {
-        _from = from;
-        _to = to;
-        _amount = amount;
-        _message = message;
-        if(_from.get_balance() > _amount)
+        this.from = from;
+        this.to = to;
+        this.amount = amount;
+        this.message = message;
+        if(this.from.getBalance() > amount)
         {
-            _from.set_balance(_from.get_balance() - _amount);
-            _to.set_balance(_to.get_balance() + _amount);
-            System.out.println("Transfer completed successfully. Message:" + _message);
+            this.from.setBalance(this.from.getBalance() - amount);
+            this.to.setBalance(this.to.getBalance() + amount);
+            System.out.println("Transfer completed successfully. Message:" + message);
         }
         else
         {
             System.out.println("Failed. Insufficient funds");
         }
     }
+
+    public void set_message(String message)
+    {
+        this.message = message;
+    }
+    public String get_message()
+    {
+        return message;
+    }
+    public void from_this_account(Account account)
+    {
+        from = account;
+    }
+    public void to_this_account(Account account)
+    {
+        to = account;
+    }
+    public void set_amount(double amount)
+    {
+        this.amount = amount;
+    }
+    public double get_amount()
+    {
+        return amount;
+    }
+
+
 
 }

@@ -1,34 +1,39 @@
 package models;
 
-public class FinancialInstitution
-{
-    private String _name;
-    private String _address;
+public class FinancialInstitution {
 
+    private int bankCount = 0;
+    private String name;
+    private String address;
+
+    private Bank[] banks = new Bank[10];
     static private int institution_count = 0;
 
-    public FinancialInstitution(String name, String address)
-    {
-        _name = name;
-        _address = address;
+    public FinancialInstitution(String name, String address) {
+        this.name = name;
+        this.address = address;
         institution_count++;
     }
 
-    public void set_name(String name)
+    public void addBank(Bank bank)
     {
-        _name = name;
-    }
-    public String get_name()
-    {
-        return  _name;
+        banks[bankCount] = bank;
+        bankCount++;
     }
 
-    public void set_address(String address)
-    {
-        _address = address;
+    public void setName(String name) {
+        this.name = name;
     }
-    public String get_address()
-    {
-        return  _address;
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getAddress() {
+        return this.address;
     }
 }

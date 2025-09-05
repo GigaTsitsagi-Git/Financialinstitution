@@ -3,64 +3,46 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Customer
-{
-    private String _name;
-    private List<Account> _accounts;
+public class Customer {
 
-    public String get_name()
-    {
-        return _name;
-    }
-    public void set_name(String name)
-    {
-        _name = name;
-    }
+    private int accountCount = 0;
+    private String name;
+    private Account[] accounts = new Account[10];
+    private Bank bank;
 
-    public Customer()
-    {
-        _accounts = new ArrayList<>();
+    public Customer(String name, Bank bank) {
+        this.name = name;
+        this.bank = bank;
+        bank.add_customer(this);
     }
 
+    public String getName() {
+        return name;
+    }
 
-    public Account get_accaunt_by_account_number(String account_number)
-    {
-        for(int i = 0; i < _accounts.size(); i++)
-        {
-            if (_accounts.get(i).get_account_number().equals(account_number))
-            {
-                return _accounts.get(i);
+    public void set_name(String name) {
+        this.name = name;
+    }
+
+    public int getAccountCount(){
+        return accountCount;
+    }
+    public Account getAccauntByAccountNumber(String account_number) {
+        for (int i = 0; i < accountCount; i++) {
+            if (accounts[i].getAccountNumber().equals(account_number)) {
+                return accounts[i];
             }
         }
-        Account new_acc = new Account();
-        _accounts.add(new_acc);
-        return new_acc;
-    }
-    public void add_account(Account account)
-    {
-        if (_accounts.isEmpty() || !_accounts.contains(account))
-        {
-            _accounts.add(account);
-        }
-    }
-    public void delete_account(String acc_number)
-    {
-        if(_accounts.isEmpty())
-        {
-            return;
-        }
-        for(int i = 0; i < _accounts.size(); i++)
-        {
-            if (_accounts.get(i).get_account_number().equals(acc_number))
-            {
-                _accounts.remove(i);
-            }
-        }
+        return null;
     }
 
-    public List<Account> get_accounts()
-    {
-        return _accounts;
+    public void addAccount(Account account) {
+        accounts[accountCount] = account;
+        accountCount++;
+    }
+
+    public Account[] getAccounts() {
+        return accounts;
     }
 
 }

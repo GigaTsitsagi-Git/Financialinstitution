@@ -5,12 +5,13 @@ import models.Customer;
 
 public class ReportGenerator
 {
-    public void genererate_customer_report(Customer customer)
+    public void genererateCustomerReport(Customer customer)
     {
-        System.out.println("--- models.Customer Report for " + customer.get_name() + "---");
-        for(Account acc : customer.get_accounts())
+        System.out.println("--- models.Customer Report for " + customer.getName() + "---");
+        Account[] acc = customer.getAccounts();
+        for(int i = 0; i < customer.getAccountCount(); i++)
         {
-            System.out.println("models.Account: " + acc.get_account_number() + " | Balance: " + acc.get_balance());
+            System.out.println("models.Account: " + acc[i].getAccountNumber() + " | Balance: " + acc[i].getBalance());
         }
     }
 

@@ -1,0 +1,58 @@
+package transaction;
+
+import models.FinancialInstitution;
+import trading.Stock;
+import trading.Trader;
+
+public class FinancialExchange {
+    private int stockCount = 0;
+    private int traderCount = 0;
+
+    private FinancialInstitution financialInstitution;
+    private String name;
+
+    private Stock[] listedStocks = new Stock[10];
+    private Trader[] traders = new Trader[10];
+
+    public FinancialExchange(FinancialInstitution financialInstitution, String name) {
+        this.financialInstitution = financialInstitution;
+        this.name = name;
+    }
+
+    public void setFinancialInstitution(FinancialInstitution financialInstitution) {
+        this.financialInstitution = financialInstitution;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Stock[] getListedStocks() {
+        return listedStocks;
+    }
+
+    public Trader[] getTraders() {
+        return traders;
+    }
+
+    public void addStock(Stock stock) {
+        listedStocks[stockCount] = stock;
+        stockCount++;
+    }
+
+    public void addTrader(Trader trader) {
+        traders[traderCount] = trader;
+        traderCount++;
+    }
+
+    public void showExchangeInfo() {
+        System.out.println("Exchange: " + name);
+        System.out.println("Institution: " + (financialInstitution != null ? financialInstitution.getName() : "None"));
+        System.out.println("Listed Stocks: " + (listedStocks.length - 1));
+        System.out.println("Active Traders: " + (traders.length - 1));
+    }
+}
