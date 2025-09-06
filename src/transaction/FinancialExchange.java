@@ -1,6 +1,6 @@
 package transaction;
 
-import models.FinancialInstitution;
+import model.FinancialInstitution;
 import trading.Stock;
 import trading.Trader;
 

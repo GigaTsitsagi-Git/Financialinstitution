@@ -1,7 +1,4 @@
-package models;
-
-import java.util.ArrayList;
-import java.util.List;
+package model;
 
 public class Customer {
 
@@ -13,7 +10,7 @@ public class Customer {
     public Customer(String name, Bank bank) {
         this.name = name;
         this.bank = bank;
-        bank.add_customer(this);
+        bank.addCustomer(this);
     }
 
     public String getName() {

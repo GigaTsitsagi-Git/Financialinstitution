@@ -1,24 +1,30 @@
 package transaction;
 
-import models.Account;
+import model.Account;
+import model.Bank;
+
+import java.math.BigDecimal;
 
 public class Transaction
 {
     private String message;
     private Account from;
     private Account to;
-    private double amount;
+    private BigDecimal amount;
+    private Bank bank;
 
-    public Transaction(Account from, Account to, double amount, String message)
+    public Transaction(Account from, Account to, BigDecimal amount,Bank bank, String message)
     {
         this.from = from;
         this.to = to;
         this.amount = amount;
         this.message = message;
-        if(this.from.getBalance() > amount)
+        this.bank = bank;
+        bank.addTransaction(this);
+        if(this.from.getBalance().compareTo(amount) > 0)
         {
-            this.from.setBalance(this.from.getBalance() - amount);
-            this.to.setBalance(this.to.getBalance() + amount);
+            this.from.setBalance(this.from.getBalance().subtract(amount));
+            this.to.setBalance(this.to.getBalance().add(amount));
             System.out.println("Transfer completed successfully. Message:" + message);
         }
         else
@@ -43,11 +49,11 @@ public class Transaction
     {
         to = account;
     }
-    public void set_amount(double amount)
+    public void set_amount(BigDecimal amount)
     {
         this.amount = amount;
     }
-    public double get_amount()
+    public BigDecimal get_amount()
     {
         return amount;
     }

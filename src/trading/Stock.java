@@ -8,10 +8,10 @@ public class Stock
 {
     private String company_name;
     private int shares;
-    private double price_per_share;
+    private BigDecimal price_per_share;
     private FinancialExchange financialExchange;
 
-    public Stock(String company_name, int shares, int price_per_share, FinancialExchange financialExchange)
+    public Stock(String company_name, int shares, BigDecimal price_per_share, FinancialExchange financialExchange)
     {
         this.company_name = company_name;
         this.shares = shares;
@@ -36,17 +36,17 @@ public class Stock
     {
         return shares;
     }
-    public double get_price_per_share()
+    public BigDecimal get_price_per_share()
     {
         return price_per_share;
     }
-    public void set_price_per_share(double _price_per_share)
+    public void set_price_per_share(BigDecimal _price_per_share)
     {
         this.price_per_share = _price_per_share;
     }
 
     public BigDecimal get_net_worth()
     {
-        return BigDecimal.valueOf(shares).multiply(BigDecimal.valueOf(price_per_share));
+        return BigDecimal.valueOf(shares).multiply(price_per_share);
     }
 }

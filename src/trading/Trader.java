@@ -1,7 +1,7 @@
 package trading;
 
-import models.Account;
-import models.Customer;
+import model.Account;
+import model.Customer;
 import transaction.FinancialExchange;
 
 public class Trader {

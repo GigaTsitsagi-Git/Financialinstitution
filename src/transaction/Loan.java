@@ -1,27 +1,29 @@
 package transaction;
 
-import models.Account;
-import models.Customer;
+import model.Account;
+import model.Customer;
+
+import java.math.BigDecimal;
 
 public class Loan {
     private Customer borrower;
-    private double amount;
+    private BigDecimal amount;
     private double interest_rate;
 
-    public Loan(Customer borrower, String accountNumber, double amount, double interest_rate) {
+    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interest_rate) {
         this.borrower = borrower;
         this.amount = amount;
         this.interest_rate = interest_rate;
 
         Account acc = this.borrower.getAccauntByAccountNumber(accountNumber);
-        acc.setBalance(acc.getBalance() + amount);
+        acc.setBalance(acc.getBalance().add(this.amount));
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 

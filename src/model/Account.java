@@ -1,9 +1,11 @@
-package models;
+package model;
+
+import java.math.BigDecimal;
 
 public class Account {
 
     private String account_number;
-    private double balance;
+    private BigDecimal balance;
 
 
     public String getAccountNumber() {
@@ -14,11 +16,11 @@ public class Account {
         this.account_number = accountNumber;
     }
 
-    public double getBalance() {
+    public BigDecimal getBalance() {
         return this.balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 }

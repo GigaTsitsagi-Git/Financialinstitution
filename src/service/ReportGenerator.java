@@ -1,7 +1,7 @@
-package services;
+package service;
 
-import models.Account;
-import models.Customer;
+import model.Account;
+import model.Customer;
 
 public class ReportGenerator
 {
