@@ -1,15 +1,15 @@
 package model;
 
+import java.util.Arrays;
+
 public class Customer {
 
     private int accountCount = 0;
     private String name;
     private Account[] accounts = new Account[10];
-    private Bank bank;
 
     public Customer(String name, Bank bank) {
         this.name = name;
-        this.bank = bank;
         bank.addCustomer(this);
     }
 
@@ -21,12 +21,13 @@ public class Customer {
         this.name = name;
     }
 
-    public int getAccountCount(){
+    public int getAccountCount() {
         return accountCount;
     }
-    public Account getAccauntByAccountNumber(String account_number) {
+
+    public Account getAccauntByAccountNumber(String accountNumber) {
         for (int i = 0; i < accountCount; i++) {
-            if (accounts[i].getAccountNumber().equals(account_number)) {
+            if (accounts[i].getAccountNumber().equals(accountNumber)) {
                 return accounts[i];
             }
         }
@@ -34,6 +35,9 @@ public class Customer {
     }
 
     public void addAccount(Account account) {
+        if (accountCount == accounts.length) {
+            accounts = Arrays.copyOf(accounts, accounts.length * 2);
+        }
         accounts[accountCount] = account;
         accountCount++;
     }

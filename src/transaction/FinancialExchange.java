@@ -4,7 +4,10 @@ import model.FinancialInstitution;
 import trading.Stock;
 import trading.Trader;
 
+import java.util.Arrays;
+
 public class FinancialExchange {
+
     private int stockCount = 0;
     private int traderCount = 0;
 
@@ -40,11 +43,17 @@ public class FinancialExchange {
     }
 
     public void addStock(Stock stock) {
+        if (stockCount == listedStocks.length) {
+            listedStocks = Arrays.copyOf(listedStocks, listedStocks.length * 2);
+        }
         listedStocks[stockCount] = stock;
         stockCount++;
     }
 
     public void addTrader(Trader trader) {
+        if (traderCount == traders.length) {
+            traders = Arrays.copyOf(traders, traders.length * 2);
+        }
         traders[traderCount] = trader;
         traderCount++;
     }

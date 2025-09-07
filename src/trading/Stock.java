@@ -4,49 +4,44 @@ import transaction.FinancialExchange;
 
 import java.math.BigDecimal;
 
-public class Stock
-{
-    private String company_name;
+public class Stock {
+
+    private String companyName;
     private int shares;
-    private BigDecimal price_per_share;
-    private FinancialExchange financialExchange;
+    private BigDecimal pricePerShare;
 
-    public Stock(String company_name, int shares, BigDecimal price_per_share, FinancialExchange financialExchange)
-    {
-        this.company_name = company_name;
+    public Stock(String companyName, int shares, BigDecimal pricePerShare, FinancialExchange financialExchange) {
+        this.companyName = companyName;
         this.shares = shares;
-        this.price_per_share = price_per_share;
-        this.financialExchange = financialExchange;
-        this.financialExchange.addStock(this);
+        this.pricePerShare = pricePerShare;
+        financialExchange.addStock(this);
     }
 
-    public void set_company_name(String company_name)
-    {
-        this.company_name = company_name;
+    public void set_company_name(String companyName) {
+        this.companyName = companyName;
     }
-    public String get_company_name()
-    {
-        return company_name;
+
+    public String get_company_name() {
+        return companyName;
     }
-    public void set_shares(int shares)
-    {
+
+    public void set_shares(int shares) {
         this.shares = shares;
     }
-    public int get_shares()
-    {
+
+    public int get_shares() {
         return shares;
     }
-    public BigDecimal get_price_per_share()
-    {
-        return price_per_share;
-    }
-    public void set_price_per_share(BigDecimal _price_per_share)
-    {
-        this.price_per_share = _price_per_share;
+
+    public BigDecimal get_price_per_share() {
+        return pricePerShare;
     }
 
-    public BigDecimal get_net_worth()
-    {
-        return BigDecimal.valueOf(shares).multiply(price_per_share);
+    public void set_price_per_share(BigDecimal pricePerShare) {
+        this.pricePerShare = pricePerShare;
+    }
+
+    public BigDecimal get_net_worth() {
+        return BigDecimal.valueOf(shares).multiply(pricePerShare);
     }
 }

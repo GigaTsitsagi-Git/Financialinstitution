@@ -1,22 +1,25 @@
 package transaction;
 
 import model.Account;
+import model.Bank;
 import model.Customer;
 
 import java.math.BigDecimal;
 
 public class Loan {
+
     private Customer borrower;
     private BigDecimal amount;
-    private double interest_rate;
+    private double interestRate;
 
-    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interest_rate) {
+    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interestRate, Bank bank) {
         this.borrower = borrower;
         this.amount = amount;
-        this.interest_rate = interest_rate;
+        this.interestRate = interestRate;
 
         Account acc = this.borrower.getAccauntByAccountNumber(accountNumber);
         acc.setBalance(acc.getBalance().add(this.amount));
+        bank.addLoan(this);
     }
 
     public void setAmount(BigDecimal amount) {
@@ -27,11 +30,11 @@ public class Loan {
         return amount;
     }
 
-    public void setInterestRate(double interest_rate) {
-        this.interest_rate = interest_rate;
+    public void setInterestRate(double interestRate) {
+        this.interestRate = interestRate;
     }
 
     public double getInterestRate() {
-        return interest_rate;
+        return interestRate;
     }
 }

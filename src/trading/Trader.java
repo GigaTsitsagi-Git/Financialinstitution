@@ -5,13 +5,12 @@ import model.Customer;
 import transaction.FinancialExchange;
 
 public class Trader {
-    private String trader_id;
-    private Customer customer;
-    private FinancialExchange financialExchange;
 
-    public Trader(String trader_id, Customer customer, FinancialExchange financialExchange) {
-        this.financialExchange = financialExchange;
-        this.trader_id = trader_id;
+    private String traderId;
+    private Customer customer;
+
+    public Trader(String traderId, Customer customer, FinancialExchange financialExchange) {
+        this.traderId = traderId;
         this.customer = customer;
         financialExchange.addTrader(this);
     }
@@ -20,12 +19,12 @@ public class Trader {
         this.customer = customer;
     }
 
-    public void set_trader_id(String trader_id) {
-        this.trader_id = trader_id;
+    public void set_trader_id(String traderId) {
+        this.traderId = traderId;
     }
 
     public String get_trader_id() {
-        return trader_id;
+        return traderId;
     }
 
     public void show_customer_accounts() {

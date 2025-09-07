@@ -2,6 +2,7 @@ package model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class FinancialInstitution {
 
@@ -12,7 +13,7 @@ public class FinancialInstitution {
     private LocalDateTime lastUpdated;
 
     private Bank[] banks = new Bank[10];
-    static private int institution_count = 0;
+    private static int institution_count = 0;
 
     public FinancialInstitution(String name, String address) {
         this.name = name;
@@ -28,6 +29,9 @@ public class FinancialInstitution {
     }
 
     public void addBank(Bank bank) {
+        if (bankCount == banks.length) {
+            banks = Arrays.copyOf(banks, banks.length * 2);
+        }
         banks[bankCount] = bank;
         bankCount++;
     }

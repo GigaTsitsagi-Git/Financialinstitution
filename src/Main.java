@@ -12,8 +12,7 @@ public class Main {
         FinancialInstitution financialInstitution = new FinancialInstitution("Institution Name", "Tbilisi");
 
         //Creating banks
-        Bank bank = new Bank("Bank of Georgia");
-        bank.setInstitution(financialInstitution);
+        Bank bank = new Bank("Bank of Georgia", financialInstitution);
         //Creating FinancialExchange
         FinancialExchange financialExchange = new FinancialExchange(financialInstitution,"Exchange name");
         // Create customers

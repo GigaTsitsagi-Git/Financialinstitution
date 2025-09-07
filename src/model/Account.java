@@ -4,16 +4,15 @@ import java.math.BigDecimal;
 
 public class Account {
 
-    private String account_number;
+    private String accountNumber;
     private BigDecimal balance;
 
-
     public String getAccountNumber() {
-        return this.account_number;
+        return this.accountNumber;
     }
 
     public void setAccountNumber(String accountNumber) {
-        this.account_number = accountNumber;
+        this.accountNumber = accountNumber;
     }
 
     public BigDecimal getBalance() {

@@ -1,25 +1,29 @@
 package model;
 
+import transaction.Loan;
 import transaction.Transaction;
+
+import java.util.Arrays;
 
 public class Bank {
 
     private int customerCount = 0;
     private int transactionCount = 0;
+    private int loanCount = 0;
     private String name;
-    private FinancialInstitution institution;
     private Customer[] customers = new Customer[10];
     private Transaction[] transactions = new Transaction[10];
+    private Loan[] loans = new Loan[10];
 
-    public Bank(String name) {
+    public Bank(String name, FinancialInstitution financialInstitution) {
         this.name = name;
-    }
-
-    public void setInstitution(FinancialInstitution institution) {
-        this.institution = institution;
+        financialInstitution.addBank(this);
     }
 
     public void addCustomer(Customer customer) {
+        if (customerCount == customers.length) {
+            customers = Arrays.copyOf(customers, customers.length * 2);
+        }
         customers[customerCount] = customer;
         customerCount++;
     }
@@ -29,6 +33,9 @@ public class Bank {
     }
 
     public void addTransaction(Transaction transaction) {
+        if (transactionCount == transactions.length) {
+            transactions = Arrays.copyOf(transactions, transactions.length * 2);
+        }
         transactions[transactionCount] = transaction;
         transactionCount++;
     }
@@ -36,4 +43,17 @@ public class Bank {
     public Transaction[] getTransactions() {
         return transactions;
     }
+
+    public void addLoan(Loan loan) {
+        if (loanCount == loans.length) {
+            loans = Arrays.copyOf(loans, loans.length * 2);
+        }
+        loans[loanCount] = loan;
+        loanCount++;
+    }
+
+    public Loan[] getLoans() {
+        return loans;
+    }
+
 }

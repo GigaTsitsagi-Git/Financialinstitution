@@ -4,24 +4,24 @@ import java.math.BigDecimal;
 
 public class CheckingAccount {
 
-    private Account base_account;
-    private BigDecimal overdraft_limit;
+    private Account baseAccount;
+    private BigDecimal overdraftLimit;
 
-    public CheckingAccount(Customer customer, Account base_account, BigDecimal overdraft_limit) {
-        this.overdraft_limit = overdraft_limit;
-        this.base_account = base_account;
-        customer.addAccount(base_account);
+    public CheckingAccount(Customer customer, Account baseAccount, BigDecimal overdraftLimit) {
+        this.overdraftLimit = overdraftLimit;
+        this.baseAccount = baseAccount;
+        customer.addAccount(baseAccount);
     }
 
     public BigDecimal getOverdraftLimit() {
-        return overdraft_limit;
+        return overdraftLimit;
     }
 
     public void setOverdraftLimit(BigDecimal overdraft_limit) {
-        this.overdraft_limit = overdraft_limit;
+        this.overdraftLimit = overdraft_limit;
     }
 
     public BigDecimal getTotalAmount() {
-        return (base_account.getBalance().add(overdraft_limit));
+        return (baseAccount.getBalance().add(overdraftLimit));
     }
 }
