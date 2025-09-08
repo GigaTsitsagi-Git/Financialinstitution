@@ -1,85 +1,110 @@
+import employee.BankEmployee;
+import employee.Employee;
+import employee.Manager;
 import model.*;
 import service.ReportGenerator;
 import trading.Stock;
 import trading.Trader;
 import transaction.FinancialExchange;
+import transaction.Loan;
 import transaction.Transaction;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
         FinancialInstitution financialInstitution = new FinancialInstitution("Institution Name", "Tbilisi");
 
         //Creating banks
-        Bank bank = new Bank("Bank of Georgia", financialInstitution);
+        Bank bank = new Bank("Bank of Georgia");
+        financialInstitution.addBank(bank);
         //Creating FinancialExchange
-        FinancialExchange financialExchange = new FinancialExchange(financialInstitution,"Exchange name");
+        FinancialExchange financialExchange = new FinancialExchange("Exchange name");
+        financialInstitution.addFinancialExchange(financialExchange);
         // Create customers
-        Customer customer_alice = new Customer("Alice", bank);
+        Customer customerAlice = new Customer("Alice", "C001");
+        bank.addCustomer(customerAlice);
 
-        Customer customer_bob = new Customer("Bob", bank);
+        Customer customerBob = new Customer("Bob", "C002");
+        bank.addCustomer(customerBob);
 
         // Create accounts
-        Account account_alice = new Account();
-        account_alice.setAccountNumber("ACC001");
-        account_alice.setBalance(new BigDecimal("1000.0"));
+        Account accountAlice = new Account();
+        accountAlice.setAccountNumber("ACC001");
+        accountAlice.setBalance(new BigDecimal("1000.0"));
 
 
-        Account account_bob = new Account();
-        account_bob.setAccountNumber("ACC002");
-        account_bob.setBalance(new BigDecimal("500.0"));
+        Account accountBob = new Account();
+        accountBob.setAccountNumber("ACC002");
+        accountBob.setBalance(new BigDecimal("500.0"));
 
-        Account checking_acc = new Account();
-        checking_acc.setAccountNumber("ACC003");
-        checking_acc.setBalance(new BigDecimal("750.0"));
+        // Creating Credit card
+        CreditCard creditCard = new CreditCard("C000111222", LocalDate.now(), "123");
+        customerBob.addCreditCard(creditCard);
 
-        Account savings_acc = new Account();
-        savings_acc.setAccountNumber("ACC004");
-        savings_acc.setBalance(new BigDecimal("2000.0"));
+        //Creating Loan
+        Loan loan = new Loan(customerAlice,new BigDecimal("500"),new BigDecimal("12.5"));
+        customerAlice.addLoan(loan);
 
         // Creating models.CheckingAccount
-        CheckingAccount checkingAccount = new CheckingAccount(customer_alice, checking_acc, new BigDecimal("250.0"));
+        CheckingAccount checkingAccount = new CheckingAccount("ACC003", new BigDecimal("2000"), new BigDecimal("250"));
 
         //Creating models.SavingsAccount
-        SavingsAccount savingsAccount = new SavingsAccount(customer_bob, savings_acc, new BigDecimal("12.5"));
+        SavingsAccount savingsAccount = new SavingsAccount("ACC004", new BigDecimal("1000"), new BigDecimal("12.5"));
 
         // Link accounts to customers
-        customer_alice.addAccount(account_alice);
-        customer_bob.addAccount(account_bob);
+        customerAlice.addAccount(accountAlice);
+        customerBob.addAccount(accountBob);
 
         // Add customers to bank
-        bank.addCustomer(customer_alice);
-        bank.addCustomer(customer_bob);
+        bank.addCustomer(customerAlice);
+        bank.addCustomer(customerBob);
 
         //Creating trading.Trader
-        Trader trader = new Trader("0", customer_bob, financialExchange);
+        Trader trader = new Trader("0", customerBob);
+        financialExchange.addTrader(trader);
         trader.showCustomerAccounts();
 
         //Creating trading.Stock
-        Stock stock_bog = new Stock("BOG", 100000, new BigDecimal("1200"), financialExchange);
-        BigDecimal net_worth_bog = stock_bog.getNetWorth();
-        System.out.println("Net worth of bog is: " + net_worth_bog);
+        Stock stockBog = new Stock("BOG", 100000, new BigDecimal("1200"));
+        financialExchange.addStock(stockBog);
+        BigDecimal netWorthBog = stockBog.getNetWorth();
+        System.out.println("Net worth of bog is: " + netWorthBog);
 
         //Creating reportGenerator
         ReportGenerator reportGenerator = new ReportGenerator();
 
         //before everything
-        reportGenerator.genererateCustomerReport(customer_bob);
+        reportGenerator.genererateCustomerReport(customerBob);
 
         // making transaction.Transaction
-        Transaction transaction = new Transaction(account_alice, account_bob, new BigDecimal("100.0"), bank, "test");
+        Transaction transaction = new Transaction(accountAlice, accountBob, new BigDecimal("100.0"), "test");
+        bank.addTransaction(transaction);
 
 
         //CheckingAcc limit amount = 750, overdraftlimit = 250. expected 1000.
-        BigDecimal total_amount = checkingAccount.getTotalAmount();
-        System.out.println("Total amount is: " + total_amount);
+        boolean overdraftActive = checkingAccount.isOverdraftInUse();
+        System.out.println("Is overdraft in use: " + overdraftActive);
 
         //SavingsAcc amount after year
-        BigDecimal amount_after_year = savingsAccount.getSavingsAccountBalanceAfterYear();
-        System.out.println("Total amount after year of saving is: " + amount_after_year);
+        BigDecimal amountAfterYear = savingsAccount.calculateFutureBalance();
+        System.out.println("Total amount after year of saving will be: " + amountAfterYear);
 
         //after everything
-        reportGenerator.genererateCustomerReport(customer_bob);
+        reportGenerator.genererateCustomerReport(customerBob);
+
+        System.out.println("Alice Accounts");
+        customerAlice.printAccounts();
+
+
+        //Inheritance
+        System.out.println("------- Inheritance output ----------");
+        Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"), bank);
+        Employee emp2 = new Manager("Nika", "smith", 40, "E002", new BigDecimal("5000"), bank);
+
+        emp1.work();
+        emp2.work();
+
     }
 }

@@ -10,11 +10,10 @@ public class Stock {
     private int shares;
     private BigDecimal pricePerShare;
 
-    public Stock(String companyName, int shares, BigDecimal pricePerShare, FinancialExchange financialExchange) {
+    public Stock(String companyName, int shares, BigDecimal pricePerShare) {
         this.companyName = companyName;
         this.shares = shares;
         this.pricePerShare = pricePerShare;
-        financialExchange.addStock(this);
     }
 
     public void setCompanyName(String companyName) {

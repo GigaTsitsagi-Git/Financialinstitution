@@ -9,10 +9,9 @@ public class Trader {
     private String traderId;
     private Customer customer;
 
-    public Trader(String traderId, Customer customer, FinancialExchange financialExchange) {
+    public Trader(String traderId, Customer customer) {
         this.traderId = traderId;
         this.customer = customer;
-        financialExchange.addTrader(this);
     }
 
     public void setCustomer(Customer customer) {

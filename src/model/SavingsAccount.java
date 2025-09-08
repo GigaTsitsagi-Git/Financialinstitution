@@ -2,18 +2,14 @@ package model;
 
 import java.math.BigDecimal;
 
-public class SavingsAccount {
+// SavingsAccount subclass
+public class SavingsAccount extends Account {
 
-    private Account base_account;
     private BigDecimal interestRate;
 
-    public SavingsAccount(Customer customer, Account baseAccount, BigDecimal interestRate) {
-        this.interestRate = interestRate;
-        this.base_account = baseAccount;
-        customer.addAccount(baseAccount);
-    }
-
-    public void setInterestRate(BigDecimal interestRate) {
+    public SavingsAccount(String accountNumber, BigDecimal balance, BigDecimal interestRate) {
+        setAccountNumber(accountNumber);
+        setBalance(balance);
         this.interestRate = interestRate;
     }
 
@@ -21,9 +17,26 @@ public class SavingsAccount {
         return interestRate;
     }
 
-    public BigDecimal getSavingsAccountBalanceAfterYear() {
-        BigDecimal sum = base_account.getBalance().add((base_account.getBalance().multiply(interestRate)));
-        base_account.setBalance(sum);
-        return sum;
+    public void setInterestRate(BigDecimal interestRate) {
+        this.interestRate = interestRate;
+    }
+
+    public void applyInterest() {
+        BigDecimal interest = getBalance().multiply(interestRate);
+        setBalance(getBalance().add(interest));
+    }
+
+    public BigDecimal calculateFutureBalance() {
+        BigDecimal interest = getBalance().multiply(interestRate);
+        return getBalance().add(interest);
+    }
+
+    @Override
+    public String toString() {
+        return "SavingsAccount{" +
+                "accountNumber='" + getAccountNumber() + '\'' +
+                ", balance=" + getBalance() +
+                ", interestRate=" + interestRate +
+                '}';
     }
 }

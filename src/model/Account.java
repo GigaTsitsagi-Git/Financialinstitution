@@ -22,4 +22,22 @@ public class Account {
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
+
+    @Override
+    public String toString() {
+        return "Account number: " + accountNumber + ", Balance: " + balance;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Account account = (Account) obj;
+        return accountNumber != null && accountNumber.equals(account.accountNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return accountNumber != null ? accountNumber.hashCode() : 0;
+    }
 }

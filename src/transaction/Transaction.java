@@ -12,12 +12,11 @@ public class Transaction {
     private Account to;
     private BigDecimal amount;
 
-    public Transaction(Account from, Account to, BigDecimal amount, Bank bank, String message) {
+    public Transaction(Account from, Account to, BigDecimal amount, String message) {
         this.from = from;
         this.to = to;
         this.amount = amount;
         this.message = message;
-        bank.addTransaction(this);
         if (this.from.getBalance().compareTo(amount) > 0) {
             this.from.setBalance(this.from.getBalance().subtract(amount));
             this.to.setBalance(this.to.getBalance().add(amount));
@@ -51,5 +50,9 @@ public class Transaction {
         return amount;
     }
 
-
+    @Override
+    public String toString() {
+        return "From: " + from.getAccountNumber() + ", to" + to.getAccountNumber() +
+                "| amount: " + amount + "| Message" + message;
+    }
 }

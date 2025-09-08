@@ -9,15 +9,11 @@ import java.math.BigDecimal;
 public class Loan {
 
     private BigDecimal amount;
-    private double interestRate;
+    private BigDecimal interestRate;
 
-    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interestRate) {
+    public Loan(Customer borrower, BigDecimal amount, BigDecimal interestRate) {
         this.amount = amount;
         this.interestRate = interestRate;
-
-        Account acc = borrower.getAccauntByAccountNumber(accountNumber);
-        acc.setBalance(acc.getBalance().add(this.amount));
-        borrower.addLoan(this);
     }
 
     public void setAmount(BigDecimal amount) {
@@ -28,11 +24,11 @@ public class Loan {
         return amount;
     }
 
-    public void setInterestRate(double interestRate) {
+    public void setInterestRate(BigDecimal interestRate) {
         this.interestRate = interestRate;
     }
 
-    public double getInterestRate() {
+    public BigDecimal getInterestRate() {
         return interestRate;
     }
 }
