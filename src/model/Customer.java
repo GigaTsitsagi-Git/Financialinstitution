@@ -7,8 +7,8 @@ import java.util.Arrays;
 public class Customer {
 
     private int accountCount = 0;
-    private String name;
     private int loanCount = 0;
+    private String name;
     private Loan[] loans = new Loan[10];
     private Account[] accounts = new Account[10];
 
@@ -21,13 +21,18 @@ public class Customer {
         return name;
     }
 
-    public void set_name(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
     public int getAccountCount() {
         return accountCount;
     }
+
+    public int getLoanCount() {
+        return loanCount;
+    }
+
 
     public Account getAccauntByAccountNumber(String accountNumber) {
         for (int i = 0; i < accountCount; i++) {
