@@ -2,12 +2,12 @@ package document;
 
 import java.time.LocalDate;
 
-public abstract class Documt {
+public abstract class Document {
 
     protected String id;
     protected LocalDate date;
 
-    public Documt(String id, LocalDate date) {
+    public Document(String id, LocalDate date) {
         this.id = id;
         this.date = date;
     }

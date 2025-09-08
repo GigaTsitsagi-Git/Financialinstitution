@@ -1,3 +1,6 @@
+import document.Contract;
+import document.Document;
+import document.Receipt;
 import employee.BankEmployee;
 import employee.Employee;
 import employee.Manager;
@@ -106,5 +109,10 @@ public class Main {
         emp1.work();
         emp2.work();
 
+        Document document1 = new Contract("001",LocalDate.now(),"Alpha","Beta");
+        Document document2 = new Receipt("002",LocalDate.now(),"Groceries",new BigDecimal("100"));
+
+        document1.printDetails();
+        document2.printDetails();
     }
 }

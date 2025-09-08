@@ -3,20 +3,20 @@ package document;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Receipt extends Documt {
+public class Receipt extends Document {
 
-    private String transactionId;
+    private String transactionMessage;
     private BigDecimal amount;
 
-    public Receipt(String id, LocalDate date, String transactionId, BigDecimal amount) {
+    public Receipt(String id, LocalDate date, String transactionMessage, BigDecimal amount) {
         super(id, date);
-        this.transactionId = transactionId;
+        this.transactionMessage = transactionMessage;
         this.amount = amount;
     }
 
     @Override
     public void printDetails() {
         System.out.println("Receipt ID: " + id + ", Date: " + date);
-        System.out.println("Transaction: " + transactionId + ", Amount: " + amount);
+        System.out.println("Transaction: " + transactionMessage + ", Amount: " + amount);
     }
 }

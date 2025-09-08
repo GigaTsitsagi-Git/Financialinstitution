@@ -1,9 +1,8 @@
 package document;
 
 import java.time.LocalDate;
-import java.util.Date;
 
-public class Contract extends Documt {
+public class Contract extends Document {
 
     private String partyA;
     private String partyB;
