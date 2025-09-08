@@ -8,18 +8,16 @@ import java.math.BigDecimal;
 
 public class Loan {
 
-    private Customer borrower;
     private BigDecimal amount;
     private double interestRate;
 
-    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interestRate, Bank bank) {
-        this.borrower = borrower;
+    public Loan(Customer borrower, String accountNumber, BigDecimal amount, double interestRate) {
         this.amount = amount;
         this.interestRate = interestRate;
 
-        Account acc = this.borrower.getAccauntByAccountNumber(accountNumber);
+        Account acc = borrower.getAccauntByAccountNumber(accountNumber);
         acc.setBalance(acc.getBalance().add(this.amount));
-        bank.addLoan(this);
+        borrower.addLoan(this);
     }
 
     public void setAmount(BigDecimal amount) {

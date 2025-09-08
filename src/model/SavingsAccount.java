@@ -5,24 +5,24 @@ import java.math.BigDecimal;
 public class SavingsAccount {
 
     private Account base_account;
-    private double interesetRate = 0.1;
+    private BigDecimal interestRate;
 
-    public SavingsAccount(Customer customer, Account baseAccount, double interesetRate) {
-        this.interesetRate = interesetRate;
+    public SavingsAccount(Customer customer, Account baseAccount, BigDecimal interestRate) {
+        this.interestRate = interestRate;
         this.base_account = baseAccount;
         customer.addAccount(baseAccount);
     }
 
-    public void setInteresetRate(double interesetRate) {
-        this.interesetRate = interesetRate;
+    public void setInterestRate(BigDecimal interestRate) {
+        this.interestRate = interestRate;
     }
 
-    public double getInteresetRate() {
-        return interesetRate;
+    public BigDecimal getInterestRate() {
+        return interestRate;
     }
 
-    public BigDecimal get_savings_account_balance_after_year() {
-        BigDecimal sum = base_account.getBalance().add((base_account.getBalance().multiply(BigDecimal.valueOf(interesetRate))));
+    public BigDecimal getSavingsAccountBalanceAfterYear() {
+        BigDecimal sum = base_account.getBalance().add((base_account.getBalance().multiply(interestRate)));
         base_account.setBalance(sum);
         return sum;
     }

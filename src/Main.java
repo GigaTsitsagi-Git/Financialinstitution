@@ -42,7 +42,7 @@ public class Main {
         CheckingAccount checkingAccount = new CheckingAccount(customer_alice, checking_acc, new BigDecimal("250.0"));
 
         //Creating models.SavingsAccount
-        SavingsAccount savingsAccount = new SavingsAccount(customer_bob, savings_acc, 12.5);
+        SavingsAccount savingsAccount = new SavingsAccount(customer_bob, savings_acc, new BigDecimal("12.5"));
 
         // Link accounts to customers
         customer_alice.addAccount(account_alice);
@@ -54,11 +54,11 @@ public class Main {
 
         //Creating trading.Trader
         Trader trader = new Trader("0", customer_bob, financialExchange);
-        trader.show_customer_accounts();
+        trader.showCustomerAccounts();
 
         //Creating trading.Stock
         Stock stock_bog = new Stock("BOG", 100000, new BigDecimal("1200"), financialExchange);
-        BigDecimal net_worth_bog = stock_bog.get_net_worth();
+        BigDecimal net_worth_bog = stock_bog.getNetWorth();
         System.out.println("Net worth of bog is: " + net_worth_bog);
 
         //Creating reportGenerator
@@ -76,7 +76,7 @@ public class Main {
         System.out.println("Total amount is: " + total_amount);
 
         //SavingsAcc amount after year
-        BigDecimal amount_after_year = savingsAccount.get_savings_account_balance_after_year();
+        BigDecimal amount_after_year = savingsAccount.getSavingsAccountBalanceAfterYear();
         System.out.println("Total amount after year of saving is: " + amount_after_year);
 
         //after everything

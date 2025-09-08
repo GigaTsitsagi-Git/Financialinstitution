@@ -15,19 +15,19 @@ public class Trader {
         financialExchange.addTrader(this);
     }
 
-    public void set_customer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public void set_trader_id(String traderId) {
+    public void setTraderId(String traderId) {
         this.traderId = traderId;
     }
 
-    public String get_trader_id() {
+    public String getTraderId() {
         return traderId;
     }
 
-    public void show_customer_accounts() {
+    public void showCustomerAccounts() {
         if (customer != null && customer.getAccounts() != null) {
             System.out.println("Accounts for customer " + customer.getName() + ":");
             Account[] acc = customer.getAccounts();

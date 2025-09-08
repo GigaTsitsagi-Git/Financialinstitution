@@ -27,27 +27,27 @@ public class Transaction {
         }
     }
 
-    public void set_message(String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 
-    public String get_message() {
+    public String getMessage() {
         return message;
     }
 
-    public void from_this_account(Account account) {
+    public void fromThisAccount(Account account) {
         from = account;
     }
 
-    public void to_this_account(Account account) {
+    public void toThisAccount(Account account) {
         to = account;
     }
 
-    public void set_amount(BigDecimal amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 
-    public BigDecimal get_amount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 

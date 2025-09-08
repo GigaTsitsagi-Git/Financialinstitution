@@ -1,11 +1,15 @@
 package model;
 
+import transaction.Loan;
+
 import java.util.Arrays;
 
 public class Customer {
 
     private int accountCount = 0;
     private String name;
+    private int loanCount = 0;
+    private Loan[] loans = new Loan[10];
     private Account[] accounts = new Account[10];
 
     public Customer(String name, Bank bank) {
@@ -46,4 +50,15 @@ public class Customer {
         return accounts;
     }
 
+    public void addLoan(Loan loan) {
+        if (loanCount == loans.length) {
+            loans = Arrays.copyOf(loans, loans.length * 2);
+        }
+        loans[loanCount] = loan;
+        loanCount++;
+    }
+
+    public Loan[] getLoans() {
+        return loans;
+    }
 }

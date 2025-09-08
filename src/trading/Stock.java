@@ -17,31 +17,31 @@ public class Stock {
         financialExchange.addStock(this);
     }
 
-    public void set_company_name(String companyName) {
+    public void setCompanyName(String companyName) {
         this.companyName = companyName;
     }
 
-    public String get_company_name() {
+    public String getCompanyName() {
         return companyName;
     }
 
-    public void set_shares(int shares) {
+    public void setShares(int shares) {
         this.shares = shares;
     }
 
-    public int get_shares() {
+    public int getShares() {
         return shares;
     }
 
-    public BigDecimal get_price_per_share() {
+    public BigDecimal getPricePerShare() {
         return pricePerShare;
     }
 
-    public void set_price_per_share(BigDecimal pricePerShare) {
+    public void setPricePerShare(BigDecimal pricePerShare) {
         this.pricePerShare = pricePerShare;
     }
 
-    public BigDecimal get_net_worth() {
+    public BigDecimal getNetWorth() {
         return BigDecimal.valueOf(shares).multiply(pricePerShare);
     }
 }
