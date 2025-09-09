@@ -16,7 +16,7 @@ public class Receipt extends Document {
 
     @Override
     public void printDetails() {
-        System.out.println("Receipt ID: " + id + ", Date: " + date);
+        System.out.println("Receipt ID: " + getId() + ", Date: " + getDate());
         System.out.println("Transaction: " + transactionMessage + ", Amount: " + amount);
     }
 }

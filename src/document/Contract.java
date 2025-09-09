@@ -15,7 +15,7 @@ public class Contract extends Document {
 
     @Override
     public void printDetails() {
-        System.out.println("Contract ID: " + id + ", Date: " + date);
+        System.out.println("Contract ID: " + getId() + ", Date: " + getDate());
         System.out.println("PartyA:" + partyA + ", PartyB: " + partyB);
     }
 }

@@ -2,7 +2,6 @@ package trading;
 
 import model.Account;
 import model.Customer;
-import transaction.FinancialExchange;
 
 public class Trader {
 

@@ -1,17 +1,15 @@
 package employee;
 
-import model.Bank;
-
 import java.math.BigDecimal;
 
 public class BankEmployee extends Employee {
 
-    public BankEmployee(String firstName, String lastName, int age, String employeeId, BigDecimal salary, Bank bank) {
-        super(firstName, lastName, age, employeeId, salary, bank);
+    public BankEmployee(String firstName, String lastName, int age, String employeeId, BigDecimal salary) {
+        super(firstName, lastName, age, employeeId, salary);
     }
 
     @Override
     public void work() {
-        System.out.println("Bank employee " + firstName + " is serving customers at the bank counter");
+        System.out.println("Bank employee " + getFirstName() + " is serving customers at the bank counter");
     }
 }

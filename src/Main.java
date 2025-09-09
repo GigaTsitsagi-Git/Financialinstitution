@@ -103,8 +103,11 @@ public class Main {
 
         //Inheritance
         System.out.println("------- Inheritance output ----------");
-        Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"), bank);
-        Employee emp2 = new Manager("Nika", "smith", 40, "E002", new BigDecimal("5000"), bank);
+        Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"));
+        Employee emp2 = new Manager("Nika", "smith", 40, "E002", new BigDecimal("5000"));
+
+        bank.addEmployee(emp1);
+        bank.addEmployee(emp2);
 
         emp1.work();
         emp2.work();

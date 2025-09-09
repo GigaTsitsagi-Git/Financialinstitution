@@ -1,7 +1,5 @@
 package employee;
 
-import model.Bank;
-
 import java.math.BigDecimal;
 
 public abstract class Employee extends Person {
@@ -9,11 +7,10 @@ public abstract class Employee extends Person {
     protected String employeeId;
     protected BigDecimal salary;
 
-    public Employee(String firstName, String lastName, int age, String employeeId, BigDecimal salary, Bank bank) {
+    public Employee(String firstName, String lastName, int age, String employeeId, BigDecimal salary) {
         super(firstName, lastName, age);
         this.employeeId = employeeId;
         this.salary = salary;
-        bank.addEmployee(this);
     }
 
     public String getEmployeeId() {
@@ -36,7 +33,7 @@ public abstract class Employee extends Person {
 
     @Override
     public String toString() {
-        return "Employee id: " + employeeId + "name: " + firstName + " " + lastName + " Salary: " + salary;
+        return "Employee id: " + employeeId + "name: " + getFirstName() + " " + getLastName() + " Salary: " + salary;
     }
 
     @Override

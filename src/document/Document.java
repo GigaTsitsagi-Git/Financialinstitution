@@ -4,27 +4,27 @@ import java.time.LocalDate;
 
 public abstract class Document {
 
-    protected String id;
-    protected LocalDate date;
+    private String id;
+    private LocalDate date;
 
     public Document(String id, LocalDate date) {
         this.id = id;
         this.date = date;
     }
 
-    public String getId() {
+    protected String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    protected void setId(String id) {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    protected LocalDate getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    protected void setDate(LocalDate date) {
         this.date = date;
     }
 

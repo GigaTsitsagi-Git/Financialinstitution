@@ -44,7 +44,6 @@ public class Customer {
         return loanCount;
     }
 
-
     public Account getAccauntByAccountNumber(String accountNumber) {
         for (int i = 0; i < accountCount; i++) {
             if (accounts[i].getAccountNumber().equals(accountNumber)) {

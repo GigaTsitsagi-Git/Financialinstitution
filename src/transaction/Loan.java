@@ -1,7 +1,5 @@
 package transaction;
 
-import model.Account;
-import model.Bank;
 import model.Customer;
 
 import java.math.BigDecimal;

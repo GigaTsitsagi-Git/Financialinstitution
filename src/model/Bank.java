@@ -15,7 +15,6 @@ public class Bank {
     private Transaction[] transactions = new Transaction[10];
     private Employee[] employees = new Employee[10];
 
-
     public Bank(String name) {
         this.name = name;
     }
@@ -70,14 +69,11 @@ public class Bank {
         return transactions;
     }
 
-    public void printTransactions()
-    {
-        for (Transaction transaction : transactions)
-        {
+    public void printTransactions() {
+        for (Transaction transaction : transactions) {
             if (transaction == null) continue;
             System.out.println(transaction);
         }
     }
-
 
 }

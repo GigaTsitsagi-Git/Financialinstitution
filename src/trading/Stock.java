@@ -1,7 +1,5 @@
 package trading;
 
-import transaction.FinancialExchange;
-
 import java.math.BigDecimal;
 
 public class Stock {

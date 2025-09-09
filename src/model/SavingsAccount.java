@@ -2,7 +2,6 @@ package model;
 
 import java.math.BigDecimal;
 
-// SavingsAccount subclass
 public class SavingsAccount extends Account {
 
     private BigDecimal interestRate;

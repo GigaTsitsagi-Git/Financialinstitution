@@ -2,7 +2,6 @@ package model;
 
 import java.math.BigDecimal;
 
-// CheckingAccount subclass
 public class CheckingAccount extends Account {
 
     private BigDecimal overdraftLimit;
