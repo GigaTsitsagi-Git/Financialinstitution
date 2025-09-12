@@ -1,8 +1,11 @@
 package model;
 
+import interfaces.ICalculable;
+import interfaces.IStorable;
+
 import java.math.BigDecimal;
 
-public class Account {
+public class Account implements ICalculable, IStorable {
 
     private String accountNumber;
     private BigDecimal balance;
@@ -39,5 +42,15 @@ public class Account {
     @Override
     public int hashCode() {
         return accountNumber != null ? accountNumber.hashCode() : 0;
+    }
+
+    @Override
+    public BigDecimal calculateTotalValue() {
+        return balance;
+    }
+
+    @Override
+    public void save() {
+        System.out.println("Saved to some Database");
     }
 }

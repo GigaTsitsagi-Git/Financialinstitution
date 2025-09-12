@@ -35,6 +35,11 @@ public class CheckingAccount extends Account {
     }
 
     @Override
+    public BigDecimal calculateTotalValue() {
+        return getBalance().add(overdraftLimit);
+    }
+
+    @Override
     public String toString() {
         return "CheckingAccount{" +
                 "accountNumber='" + getAccountNumber() + '\'' +

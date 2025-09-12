@@ -3,7 +3,7 @@ package trading;
 import model.Account;
 import model.Customer;
 
-public class Trader implements ITrader {
+public class Trader {
 
     private String traderId;
     private Customer customer;

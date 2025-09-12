@@ -9,6 +9,12 @@ public class BankEmployee extends Employee {
     }
 
     @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Bank Employee");
+    }
+
+    @Override
     public void work() {
         System.out.println("Bank employee " + getFirstName() + " is serving customers at the bank counter");
     }

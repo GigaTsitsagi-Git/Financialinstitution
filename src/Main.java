@@ -4,6 +4,8 @@ import document.Receipt;
 import employee.BankEmployee;
 import employee.Employee;
 import employee.Manager;
+import employee.Person;
+import interfaces.IPrint;
 import model.*;
 import service.ReportGenerator;
 import trading.Stock;
@@ -95,7 +97,7 @@ public class Main {
         System.out.println("Is overdraft in use: " + overdraftActive);
 
         //SavingsAcc amount after year
-        BigDecimal amountAfterYear = savingsAccount.calculateFutureBalance();
+        BigDecimal amountAfterYear = savingsAccount.calculateTotalValue();
         System.out.println("Total amount after year of saving will be: " + amountAfterYear);
 
         //after everything
@@ -121,5 +123,13 @@ public class Main {
 
         document1.printDetails();
         document2.printDetails();
+
+        IPrint person = new Person("Giga","Tsitsagi", 21);
+        IPrint bankEmployee = new BankEmployee("salome","smthng", 21, "E003", new BigDecimal("3000"));
+        IPrint manager = new Manager("rati","smthng1", 21,"E004",new BigDecimal("5000"));
+
+        reportGenerator.printDetails(person);
+        reportGenerator.printDetails(bankEmployee);
+        reportGenerator.printDetails(manager);
     }
 }

@@ -2,6 +2,8 @@ package document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Receipt extends Document {
 
@@ -18,5 +20,10 @@ public class Receipt extends Document {
     public void printDetails() {
         System.out.println("Receipt ID: " + getId() + ", Date: " + getDate());
         System.out.println("Transaction: " + transactionMessage + ", Amount: " + amount);
+    }
+
+    @Override
+    public LocalTime getCreatedTime() {
+        return LocalTime.now();
     }
 }

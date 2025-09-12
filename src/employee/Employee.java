@@ -32,6 +32,12 @@ public abstract class Employee extends Person {
     public abstract void work();
 
     @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Employee id - " + employeeId);
+    }
+
+    @Override
     public String toString() {
         return "Employee id: " + employeeId + "name: " + getFirstName() + " " + getLastName() + " Salary: " + salary;
     }

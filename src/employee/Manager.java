@@ -9,6 +9,12 @@ public class Manager extends BankEmployee {
     }
 
     @Override
+    public void printDetails() {
+        super.printDetails();
+        System.out.println("Manager: salary => " + salary);
+    }
+
+    @Override
     public void work() {
         System.out.println("Manager " + getFirstName() + " is holding a team meeting");
     }

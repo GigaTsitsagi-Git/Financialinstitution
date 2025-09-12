@@ -5,7 +5,7 @@ import transaction.Transaction;
 
 import java.util.Arrays;
 
-public class Bank implements IBank {
+public class Bank{
 
     private int customerCount = 0;
     private int currencyCount = 0;

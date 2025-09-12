@@ -25,7 +25,8 @@ public class SavingsAccount extends Account {
         setBalance(getBalance().add(interest));
     }
 
-    public BigDecimal calculateFutureBalance() {
+    @Override
+    public BigDecimal calculateTotalValue() {
         BigDecimal interest = getBalance().multiply(interestRate);
         return getBalance().add(interest);
     }

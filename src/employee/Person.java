@@ -1,6 +1,9 @@
 package employee;
 
-public class Person implements IPerson {
+import interfaces.IMove;
+import interfaces.IPrint;
+
+public class Person implements IMove, IPrint {
 
     protected String firstName;
     protected String lastName;
@@ -36,4 +39,13 @@ public class Person implements IPerson {
         this.age = age;
     }
 
+    @Override
+    public void Move() {
+        System.out.println("Person is Walking");
+    }
+
+    @Override
+    public void printDetails() {
+        System.out.println("First name - " + firstName + ", Last name - " + lastName);
+    }
 }

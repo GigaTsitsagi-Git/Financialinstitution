@@ -1,8 +1,10 @@
 package document;
 
+import interfaces.ITimestamped;
+
 import java.time.LocalDate;
 
-public abstract class Document {
+public abstract class Document implements ITimestamped {
 
     private String id;
     private LocalDate date;

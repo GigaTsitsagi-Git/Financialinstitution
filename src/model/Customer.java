@@ -1,10 +1,12 @@
 package model;
 
+import interfaces.IMove;
+import interfaces.IStorable;
 import transaction.Loan;
 
 import java.util.Arrays;
 
-public class Customer {
+public class Customer implements IMove, IStorable {
 
     private String customerId;
     private int creditCardCount = 0;
@@ -129,5 +131,15 @@ public class Customer {
     @Override
     public int hashCode() {
         return customerId != null ? customerId.hashCode() : 0;
+    }
+
+    @Override
+    public void Move() {
+        System.out.println("Customer Entered the Bank");
+    }
+
+    @Override
+    public void save() {
+        System.out.println("Saved the data into Bank DataBase");
     }
 }
