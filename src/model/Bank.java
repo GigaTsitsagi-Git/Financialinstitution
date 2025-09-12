@@ -5,13 +5,15 @@ import transaction.Transaction;
 
 import java.util.Arrays;
 
-public class Bank {
+public class Bank implements IBank {
 
     private int customerCount = 0;
+    private int currencyCount = 0;
     private int transactionCount = 0;
     private int employeeCount = 0;
     private String name;
     private Customer[] customers = new Customer[10];
+    private Currency[] currencies = new Currency[10];
     private Transaction[] transactions = new Transaction[10];
     private Employee[] employees = new Employee[10];
 
@@ -46,6 +48,23 @@ public class Bank {
         customerCount++;
     }
 
+    public void addCurency(Currency currency)
+    {
+        if(customerCount == currencies.length)
+        {
+            currencies = Arrays.copyOf(currencies, currencies.length * 2);
+        }
+        currencies[customerCount] = currency;
+        customerCount++;
+    }
+
+    public final void showCurrencies()
+    {
+        for(Currency currency : currencies)
+        {
+            System.out.println(currency);
+        }
+    }
     public Customer[] getCustomers() {
         return customers;
     }

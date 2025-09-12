@@ -4,7 +4,7 @@ import model.Customer;
 
 import java.math.BigDecimal;
 
-public class Loan {
+public class Loan implements ITrasnferMoney {
 
     private BigDecimal amount;
     private BigDecimal interestRate;
@@ -16,6 +16,11 @@ public class Loan {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public void printMoneyTransfered() {
+        System.out.println("Money Transferred:" + amount);
     }
 
     public BigDecimal getAmount() {

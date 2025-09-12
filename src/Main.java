@@ -50,6 +50,10 @@ public class Main {
         Loan loan = new Loan(customerAlice,new BigDecimal("500"),new BigDecimal("12.5"));
         customerAlice.addLoan(loan);
 
+        //Creating Currency
+        Currency currency = new Currency("USD","$");
+        bank.addCurency(currency);
+
         // Creating models.CheckingAccount
         CheckingAccount checkingAccount = new CheckingAccount("ACC003", new BigDecimal("2000"), new BigDecimal("250"));
 

@@ -4,7 +4,7 @@ import model.Account;
 
 import java.math.BigDecimal;
 
-public class Transaction {
+public class Transaction implements ITrasnferMoney {
 
     private String message;
     private Account from;
@@ -43,6 +43,11 @@ public class Transaction {
 
     public void setAmount(BigDecimal amount) {
         this.amount = amount;
+    }
+
+    @Override
+    public void printMoneyTransfered() {
+        System.out.println("Money Transferred:" + amount);
     }
 
     public BigDecimal getAmount() {

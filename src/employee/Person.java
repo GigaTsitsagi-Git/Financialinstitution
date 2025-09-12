@@ -1,10 +1,10 @@
 package employee;
 
-public class Person {
+public class Person implements IPerson {
 
-    private String firstName;
-    private String lastName;
-    private int age;
+    protected String firstName;
+    protected String lastName;
+    protected int age;
 
     public Person(String firstName, String lastName, int age) {
         this.firstName = firstName;
@@ -12,27 +12,27 @@ public class Person {
         this.age = age;
     }
 
-    protected String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    protected void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    protected String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    protected void setLastName(String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    protected int getAge() {
+    public int getAge() {
         return age;
     }
 
-    protected void setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
