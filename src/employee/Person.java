@@ -40,7 +40,7 @@ public class Person implements IMove, IPrint {
     }
 
     @Override
-    public void Move() {
+    public void move() {
         System.out.println("Person is Walking");
     }
 

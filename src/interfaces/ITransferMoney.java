@@ -2,7 +2,7 @@ package interfaces;
 
 import java.math.BigDecimal;
 
-public interface ITrasnferMoney {
+public interface ITransferMoney {
 
     BigDecimal getAmount();
     void setAmount(BigDecimal amount);

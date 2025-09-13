@@ -9,11 +9,13 @@ public class Receipt extends Document {
 
     private String transactionMessage;
     private BigDecimal amount;
+    private LocalTime createdTime;
 
     public Receipt(String id, LocalDate date, String transactionMessage, BigDecimal amount) {
         super(id, date);
         this.transactionMessage = transactionMessage;
         this.amount = amount;
+        createdTime = LocalTime.now();
     }
 
     @Override
@@ -24,6 +26,6 @@ public class Receipt extends Document {
 
     @Override
     public LocalTime getCreatedTime() {
-        return LocalTime.now();
+        return createdTime;
     }
 }

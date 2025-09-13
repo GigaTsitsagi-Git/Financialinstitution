@@ -107,6 +107,8 @@ public class Main {
         customerAlice.printAccounts();
 
 
+
+
         //Inheritance
         System.out.println("------- Inheritance output ----------");
         Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"));
@@ -118,11 +120,29 @@ public class Main {
         emp1.work();
         emp2.work();
 
+        customerBob.move();
+
         Document document1 = new Contract("001",LocalDate.now(),"Alpha","Beta");
         Document document2 = new Receipt("002",LocalDate.now(),"Groceries",new BigDecimal("100"));
 
+        System.out.println();
+        System.out.println();
+
+        //Interface methods
         document1.printDetails();
         document2.printDetails();
+
+        customerBob.move();
+        customerAlice.save();
+
+        accountBob.save();
+
+        document1.getCreatedTime();
+        document2.getCreatedTime();
+
+        loan.printMoneyTransfered();
+        transaction.printMoneyTransfered();
+
 
         IPrint person = new Person("Giga","Tsitsagi", 21);
         IPrint bankEmployee = new BankEmployee("salome","smthng", 21, "E003", new BigDecimal("3000"));

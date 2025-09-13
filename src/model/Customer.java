@@ -134,7 +134,7 @@ public class Customer implements IMove, IStorable {
     }
 
     @Override
-    public void Move() {
+    public void move() {
         System.out.println("Customer Entered the Bank");
     }
 

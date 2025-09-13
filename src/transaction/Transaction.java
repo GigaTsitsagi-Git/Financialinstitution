@@ -1,11 +1,11 @@
 package transaction;
 
-import interfaces.ITrasnferMoney;
+import interfaces.ITransferMoney;
 import model.Account;
 
 import java.math.BigDecimal;
 
-public class Transaction implements ITrasnferMoney {
+public class Transaction implements ITransferMoney {
 
     private String message;
     private Account from;
@@ -48,7 +48,7 @@ public class Transaction implements ITrasnferMoney {
 
     @Override
     public void printMoneyTransfered() {
-        System.out.println("Money Transferred:" + amount);
+        System.out.println("| TRANSACTION | Money Transferred:" + amount);
     }
 
     public BigDecimal getAmount() {

@@ -8,6 +8,7 @@ public class Contract extends Document {
 
     private String partyA;
     private String partyB;
+    private LocalTime createdTime;
 
     public Contract(String id, LocalDate date, String partyA, String partyB) {
         super(id, date);
@@ -19,10 +20,11 @@ public class Contract extends Document {
     public void printDetails() {
         System.out.println("Contract ID: " + getId() + ", Date: " + getDate());
         System.out.println("PartyA:" + partyA + ", PartyB: " + partyB);
+        createdTime = LocalTime.now();
     }
 
     @Override
     public LocalTime getCreatedTime() {
-        return LocalTime.now();
+        return createdTime;
     }
 }

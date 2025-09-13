@@ -5,7 +5,7 @@ import transaction.Transaction;
 
 import java.util.Arrays;
 
-public class Bank{
+public class Bank {
 
     private int customerCount = 0;
     private int currencyCount = 0;
@@ -48,23 +48,20 @@ public class Bank{
         customerCount++;
     }
 
-    public void addCurency(Currency currency)
-    {
-        if(customerCount == currencies.length)
-        {
+    public void addCurency(Currency currency) {
+        if (customerCount == currencies.length) {
             currencies = Arrays.copyOf(currencies, currencies.length * 2);
         }
         currencies[customerCount] = currency;
         customerCount++;
     }
 
-    public final void showCurrencies()
-    {
-        for(Currency currency : currencies)
-        {
+    public final void showCurrencies() {
+        for (Currency currency : currencies) {
             System.out.println(currency);
         }
     }
+
     public Customer[] getCustomers() {
         return customers;
     }
