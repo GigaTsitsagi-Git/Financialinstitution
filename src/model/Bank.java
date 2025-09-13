@@ -48,12 +48,12 @@ public class Bank {
         customerCount++;
     }
 
-    public void addCurency(Currency currency) {
+    public void addCurrency(Currency currency) {
         if (customerCount == currencies.length) {
             currencies = Arrays.copyOf(currencies, currencies.length * 2);
         }
         currencies[customerCount] = currency;
-        customerCount++;
+        currencyCount++;
     }
 
     public final void showCurrencies() {

@@ -6,5 +6,5 @@ public interface ITransferMoney {
 
     BigDecimal getAmount();
     void setAmount(BigDecimal amount);
-    void printMoneyTransfered();
+    void printMoneyTransferred();
 }

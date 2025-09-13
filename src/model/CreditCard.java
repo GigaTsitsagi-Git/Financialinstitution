@@ -3,6 +3,7 @@ package model;
 import java.time.LocalDate;
 
 public class CreditCard {
+
     private String cardNumber;
     private LocalDate expirationDate;
     private String cvc;

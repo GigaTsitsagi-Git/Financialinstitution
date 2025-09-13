@@ -13,12 +13,12 @@ import trading.Trader;
 import transaction.FinancialExchange;
 import transaction.Loan;
 import transaction.Transaction;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+
         FinancialInstitution financialInstitution = new FinancialInstitution("Institution Name", "Tbilisi");
 
         //Creating banks
@@ -39,7 +39,6 @@ public class Main {
         accountAlice.setAccountNumber("ACC001");
         accountAlice.setBalance(new BigDecimal("1000.0"));
 
-
         Account accountBob = new Account();
         accountBob.setAccountNumber("ACC002");
         accountBob.setBalance(new BigDecimal("500.0"));
@@ -49,12 +48,12 @@ public class Main {
         customerBob.addCreditCard(creditCard);
 
         //Creating Loan
-        Loan loan = new Loan(customerAlice,new BigDecimal("500"),new BigDecimal("12.5"));
+        Loan loan = new Loan(customerAlice, new BigDecimal("500"), new BigDecimal("12.5"));
         customerAlice.addLoan(loan);
 
         //Creating Currency
-        Currency currency = new Currency("USD","$");
-        bank.addCurency(currency);
+        Currency currency = new Currency("USD", "$");
+        bank.addCurrency(currency);
 
         // Creating models.CheckingAccount
         CheckingAccount checkingAccount = new CheckingAccount("ACC003", new BigDecimal("2000"), new BigDecimal("250"));
@@ -91,7 +90,6 @@ public class Main {
         Transaction transaction = new Transaction(accountAlice, accountBob, new BigDecimal("100.0"), "test");
         bank.addTransaction(transaction);
 
-
         //CheckingAcc limit amount = 750, overdraftlimit = 250. expected 1000.
         boolean overdraftActive = checkingAccount.isOverdraftInUse();
         System.out.println("Is overdraft in use: " + overdraftActive);
@@ -106,9 +104,6 @@ public class Main {
         System.out.println("Alice Accounts");
         customerAlice.printAccounts();
 
-
-
-
         //Inheritance
         System.out.println("------- Inheritance output ----------");
         Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"));
@@ -122,8 +117,8 @@ public class Main {
 
         customerBob.move();
 
-        Document document1 = new Contract("001",LocalDate.now(),"Alpha","Beta");
-        Document document2 = new Receipt("002",LocalDate.now(),"Groceries",new BigDecimal("100"));
+        Document document1 = new Contract("001", LocalDate.now(), "Alpha", "Beta");
+        Document document2 = new Receipt("002", LocalDate.now(), "Groceries", new BigDecimal("100"));
 
         System.out.println();
         System.out.println();
@@ -140,13 +135,12 @@ public class Main {
         document1.getCreatedTime();
         document2.getCreatedTime();
 
-        loan.printMoneyTransfered();
-        transaction.printMoneyTransfered();
+        loan.printMoneyTransferred();
+        transaction.printMoneyTransferred();
 
-
-        IPrint person = new Person("Giga","Tsitsagi", 21);
-        IPrint bankEmployee = new BankEmployee("salome","smthng", 21, "E003", new BigDecimal("3000"));
-        IPrint manager = new Manager("rati","smthng1", 21,"E004",new BigDecimal("5000"));
+        IPrint person = new Person("Giga", "Tsitsagi", 21);
+        IPrint bankEmployee = new BankEmployee("salome", "smthng", 21, "E003", new BigDecimal("3000"));
+        IPrint manager = new Manager("rati", "smthng1", 21, "E004", new BigDecimal("5000"));
 
         reportGenerator.printDetails(person);
         reportGenerator.printDetails(bankEmployee);

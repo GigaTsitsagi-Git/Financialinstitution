@@ -47,7 +47,7 @@ public class Transaction implements ITransferMoney {
     }
 
     @Override
-    public void printMoneyTransfered() {
+    public void printMoneyTransferred() {
         System.out.println("| TRANSACTION | Money Transferred:" + amount);
     }
 

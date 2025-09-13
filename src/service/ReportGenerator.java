@@ -4,7 +4,7 @@ import interfaces.IPrint;
 import model.Account;
 import model.Customer;
 
-public class ReportGenerator{
+public class ReportGenerator {
 
     public void genererateCustomerReport(Customer customer) {
         System.out.println("--- Customer Report for " + customer.getName() + " ---");
@@ -14,8 +14,7 @@ public class ReportGenerator{
         }
     }
 
-    public void printDetails(IPrint print)
-    {
+    public void printDetails(IPrint print) {
         System.out.println("=== Printing Document ===");
         print.printDetails();  // Polymorphic call
         System.out.println("=========================");

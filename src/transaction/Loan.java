@@ -20,7 +20,7 @@ public class Loan implements ITransferMoney {
     }
 
     @Override
-    public void printMoneyTransfered() {
+    public void printMoneyTransferred() {
         System.out.println("| LOAN | Money Transferred:" + amount);
     }
 

@@ -51,14 +51,24 @@ public class FinancialInstitution {
 
     public void setName(String name) {
         this.name = name;
+        lastUpdated = LocalDateTime.now();
     }
 
     public String getName() {
         return this.name;
     }
 
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+        lastUpdated = LocalDateTime.now();
     }
 
     public String getAddress() {
