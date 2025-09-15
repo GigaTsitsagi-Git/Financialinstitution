@@ -2,7 +2,6 @@ package model;
 
 import employee.Employee;
 import transaction.Transaction;
-
 import java.util.Arrays;
 
 public class Bank {
