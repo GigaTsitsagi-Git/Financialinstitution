@@ -1,7 +1,10 @@
 package model;
 
+import Exceptions.CurrencyNotSupportedException;
+import Exceptions.UnderageCustomerException;
 import employee.Employee;
 import transaction.Transaction;
+
 import java.util.Arrays;
 
 public class Bank {
@@ -28,18 +31,10 @@ public class Bank {
         employeeCount++;
     }
 
-    public Employee[] getEmployees() {
-        return employees;
-    }
-
-    public void printEmployees() {
-        for (Employee employee : employees) {
-            if (employee == null) continue;
-            System.out.println(employee);
-        }
-    }
-
     public void addCustomer(Customer customer) {
+        if (customer.getAge() < 18) {
+            throw new UnderageCustomerException("Customer must be at least 18 years old: " + customer.getAge());
+        }
         if (customerCount == customers.length) {
             customers = Arrays.copyOf(customers, customers.length * 2);
         }
@@ -55,14 +50,26 @@ public class Bank {
         currencyCount++;
     }
 
+    public void addTransaction(Transaction transaction) {
+        if (transactionCount == transactions.length) {
+            transactions = Arrays.copyOf(transactions, transactions.length * 2);
+        }
+        transactions[transactionCount] = transaction;
+        transactionCount++;
+    }
+
+
+    public void printEmployees() {
+        for (Employee employee : employees) {
+            if (employee == null) continue;
+            System.out.println(employee);
+        }
+    }
+
     public final void showCurrencies() {
         for (Currency currency : currencies) {
             System.out.println(currency);
         }
-    }
-
-    public Customer[] getCustomers() {
-        return customers;
     }
 
     public void printCustomers() {
@@ -72,23 +79,50 @@ public class Bank {
         }
     }
 
-    public void addTransaction(Transaction transaction) {
-        if (transactionCount == transactions.length) {
-            transactions = Arrays.copyOf(transactions, transactions.length * 2);
-        }
-        transactions[transactionCount] = transaction;
-        transactionCount++;
-    }
-
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
     public void printTransactions() {
         for (Transaction transaction : transactions) {
             if (transaction == null) continue;
             System.out.println(transaction);
         }
     }
+
+    public void exchangeMoney(String currencyCode) {
+        boolean found = false;
+        for (Currency c : currencies) { //Question: when I run the program it says c is null why?
+            if (c != null && c.getCODE().equals(currencyCode)) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new CurrencyNotSupportedException("Currency not supported " + currencyCode);
+        }
+
+        System.out.println("Exchanged into " + currencyCode);
+    }
+
+    public Employee[] getEmployees() {
+        return employees;
+    }
+
+    public int getCurrencyCount() {
+        return currencyCount;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public Customer[] getCustomers() {
+        return customers;
+    }
+
+
+    public Transaction[] getTransactions() {
+        return transactions;
+    }
+
 
 }

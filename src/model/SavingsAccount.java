@@ -7,8 +7,7 @@ public class SavingsAccount extends Account {
     private BigDecimal interestRate;
 
     public SavingsAccount(String accountNumber, BigDecimal balance, BigDecimal interestRate) {
-        setAccountNumber(accountNumber);
-        setBalance(balance);
+        super(accountNumber, balance);
         this.interestRate = interestRate;
     }
 

@@ -1,5 +1,6 @@
 package model;
 
+import Exceptions.InvalidAccountException;
 import interfaces.ICalculable;
 import interfaces.IStorable;
 
@@ -9,6 +10,14 @@ public class Account implements ICalculable, IStorable {
 
     private String accountNumber;
     private BigDecimal balance;
+
+    public Account(String accountNumber, BigDecimal balance) {
+        if (accountNumber == null || accountNumber.isBlank()) {
+            throw new InvalidAccountException("Account number cannot be empty");
+        }
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
 
     public String getAccountNumber() {
         return this.accountNumber;
@@ -24,6 +33,10 @@ public class Account implements ICalculable, IStorable {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
     }
 
     @Override

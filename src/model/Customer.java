@@ -1,5 +1,6 @@
 package model;
 
+import Exceptions.UnderageCustomerException;
 import interfaces.IMove;
 import interfaces.IStorable;
 import transaction.Loan;
@@ -9,17 +10,19 @@ import java.util.Arrays;
 public class Customer implements IMove, IStorable {
 
     private String customerId;
+    private String name;
+    private int age;
     private int creditCardCount = 0;
     private int accountCount = 0;
     private int loanCount = 0;
-    private String name;
     private Loan[] loans = new Loan[10];
     private Account[] accounts = new Account[10];
     private CreditCard[] creditCards = new CreditCard[10];
 
-    public Customer(String name, String customerId) {
+    public Customer(String name, String customerId, int age) {
         this.name = name;
         this.customerId = customerId;
+        this.age = age;
     }
 
     public String getCustomerId() {
@@ -36,6 +39,14 @@ public class Customer implements IMove, IStorable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
     }
 
     public int getAccountCount() {
@@ -67,27 +78,22 @@ public class Customer implements IMove, IStorable {
         return accounts;
     }
 
-    public void printAccounts()
-    {
-        for(Account account : accounts)
-        {
-            if(account == null) continue;
+    public void printAccounts() {
+        for (Account account : accounts) {
+            if (account == null) continue;
             System.out.println(account);
         }
     }
 
-    public void addCreditCard(CreditCard creditCard)
-    {
-        if(creditCardCount == creditCards.length)
-        {
-            creditCards = Arrays.copyOf(creditCards, creditCardCount * 2 );
+    public void addCreditCard(CreditCard creditCard) {
+        if (creditCardCount == creditCards.length) {
+            creditCards = Arrays.copyOf(creditCards, creditCardCount * 2);
         }
         creditCards[creditCardCount] = creditCard;
         creditCardCount++;
     }
 
-    public CreditCard[] getCreditCards()
-    {
+    public CreditCard[] getCreditCards() {
         return creditCards;
     }
 
@@ -103,10 +109,8 @@ public class Customer implements IMove, IStorable {
         return loans;
     }
 
-    public void printLoans()
-    {
-        for(Loan loan : loans)
-        {
+    public void printLoans() {
+        for (Loan loan : loans) {
             System.out.println(loan);
         }
     }

@@ -1,5 +1,7 @@
 package model;
 
+import Exceptions.InsufficientFundsException;
+
 import java.math.BigDecimal;
 
 public class CheckingAccount extends Account {
@@ -7,8 +9,7 @@ public class CheckingAccount extends Account {
     private BigDecimal overdraftLimit;
 
     public CheckingAccount(String accountNumber, BigDecimal balance, BigDecimal overdraftLimit) {
-        setAccountNumber(accountNumber);
-        setBalance(balance);
+        super(accountNumber, balance);
         this.overdraftLimit = overdraftLimit;
     }
 
@@ -20,7 +21,10 @@ public class CheckingAccount extends Account {
         this.overdraftLimit = overdraftLimit;
     }
 
-    public boolean withdraw(BigDecimal amount) {
+    public boolean withdraw(BigDecimal amount) throws InsufficientFundsException {
+        if (getBalance().compareTo(amount) < 0) {
+            throw new InsufficientFundsException("Not enough money in the account " + getAccountNumber());
+        }
         if (getBalance().add(overdraftLimit).compareTo(amount) >= 0) {
             setBalance(getBalance().subtract(amount));
             return true;

@@ -9,6 +9,11 @@ public class Manager extends BankEmployee {
     }
 
     @Override
+    public void approveLoan(BigDecimal amount) {
+        System.out.println("Loan approved: " + amount);
+    }
+
+    @Override
     public void printDetails() {
         super.printDetails();
         System.out.println("Manager: salary => " + salary);

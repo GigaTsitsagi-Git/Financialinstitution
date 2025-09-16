@@ -1,3 +1,4 @@
+import Exceptions.InsufficientFundsException;
 import document.Contract;
 import document.Document;
 import document.Receipt;
@@ -13,6 +14,7 @@ import trading.Trader;
 import transaction.FinancialExchange;
 import transaction.Loan;
 import transaction.Transaction;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -27,21 +29,20 @@ public class Main {
         //Creating FinancialExchange
         FinancialExchange financialExchange = new FinancialExchange("Exchange name");
         financialInstitution.addFinancialExchange(financialExchange);
-        // Create customers
-        Customer customerAlice = new Customer("Alice", "C001");
-        bank.addCustomer(customerAlice);
 
-        Customer customerBob = new Customer("Bob", "C002");
+        // Create customers
+        Customer customerAlice = new Customer("Alice", "C001", 21);
+        Customer ExceptionCustomer = new Customer("Alice", "C001", 16);
+        Customer customerBob = new Customer("Bob", "C002", 30);
+
         bank.addCustomer(customerBob);
+        bank.addCustomer(customerAlice);
+        //bank.addCustomer(ExceptionCustomer);
 
         // Create accounts
-        Account accountAlice = new Account();
-        accountAlice.setAccountNumber("ACC001");
-        accountAlice.setBalance(new BigDecimal("1000.0"));
-
-        Account accountBob = new Account();
-        accountBob.setAccountNumber("ACC002");
-        accountBob.setBalance(new BigDecimal("500.0"));
+        Account accountAlice = new Account("ACC001", new BigDecimal("1000.0"));
+        Account accountBob = new Account("ACC002", new BigDecimal("500.0"));
+        //Account exceptionAcc = new Account("", new BigDecimal("1000.0"));
 
         // Creating Credit card
         CreditCard creditCard = new CreditCard("C000111222", LocalDate.now(), "123");
@@ -55,19 +56,23 @@ public class Main {
         Currency currency = new Currency("USD", "$");
         bank.addCurrency(currency);
 
+        //uncomment to throw exception
+        //bank.exchangeMoney("GEL");
+
         // Creating models.CheckingAccount
         CheckingAccount checkingAccount = new CheckingAccount("ACC003", new BigDecimal("2000"), new BigDecimal("250"));
 
         //Creating models.SavingsAccount
         SavingsAccount savingsAccount = new SavingsAccount("ACC004", new BigDecimal("1000"), new BigDecimal("12.5"));
 
+        try {
+            checkingAccount.withdraw(new BigDecimal("2200"));
+        } catch (InsufficientFundsException e) {
+            System.out.println("Failed" + e.getMessage());
+        }
         // Link accounts to customers
         customerAlice.addAccount(accountAlice);
         customerBob.addAccount(accountBob);
-
-        // Add customers to bank
-        bank.addCustomer(customerAlice);
-        bank.addCustomer(customerBob);
 
         //Creating trading.Trader
         Trader trader = new Trader("0", customerBob);
@@ -90,7 +95,7 @@ public class Main {
         Transaction transaction = new Transaction(accountAlice, accountBob, new BigDecimal("100.0"), "test");
         bank.addTransaction(transaction);
 
-        //CheckingAcc limit amount = 750, overdraftlimit = 250. expected 1000.
+        //CheckingAcc limit amount = 750, overdraft limit = 250. expected 1000.
         boolean overdraftActive = checkingAccount.isOverdraftInUse();
         System.out.println("Is overdraft in use: " + overdraftActive);
 
@@ -109,6 +114,9 @@ public class Main {
         Employee emp1 = new BankEmployee("George", "Cooper", 28, "E001", new BigDecimal("2000"));
         Employee emp2 = new Manager("Nika", "smith", 40, "E002", new BigDecimal("5000"));
 
+        //throws exception
+        //((BankEmployee) emp1).approveLoan(new BigDecimal("6000"));
+        ((BankEmployee) emp2).approveLoan(new BigDecimal("6000"));
         bank.addEmployee(emp1);
         bank.addEmployee(emp2);
 
