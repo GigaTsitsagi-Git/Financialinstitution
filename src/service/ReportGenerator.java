@@ -1,6 +1,6 @@
 package service;
 
-import Interface.IPrint;
+import interfaces.IPrint;
 import model.Account;
 import model.Customer;
 

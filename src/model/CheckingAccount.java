@@ -1,6 +1,6 @@
 package model;
 
-import Exception.InsufficientFundsException;
+import exception.InsufficientFundsException;
 
 import java.math.BigDecimal;
 

@@ -1,7 +1,7 @@
 package model;
 
-import Interface.IMove;
-import Interface.IStorable;
+import interfaces.IMove;
+import interfaces.IStorable;
 import transaction.Loan;
 
 import java.util.Arrays;

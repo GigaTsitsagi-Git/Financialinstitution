@@ -1,4 +1,4 @@
-import Exception.InsufficientFundsException;
+import exception.InsufficientFundsException;
 import autocloseable.DatabaseConnection;
 import document.Contract;
 import document.Document;
@@ -7,7 +7,7 @@ import employee.BankEmployee;
 import employee.Employee;
 import employee.Manager;
 import employee.Person;
-import Interface.IPrint;
+import interfaces.IPrint;
 import model.*;
 import service.ReportGenerator;
 import trading.Stock;

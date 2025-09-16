@@ -1,7 +1,7 @@
 package employee;
 
-import Interface.IMove;
-import Interface.IPrint;
+import interfaces.IMove;
+import interfaces.IPrint;
 
 public class Person implements IMove, IPrint {
 
