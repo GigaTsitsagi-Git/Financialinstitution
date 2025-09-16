@@ -88,7 +88,7 @@ public class Bank {
 
     public void exchangeMoney(String currencyCode) {
         boolean found = false;
-        for (Currency c : currencies) { //Question: when I run the program it says c is null why?
+        for (Currency c : currencies) {
             if (c != null && c.getCODE().equals(currencyCode)) {
                 found = true;
                 break;
