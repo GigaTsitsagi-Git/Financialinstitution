@@ -9,7 +9,6 @@ public class FinancialExchange {
 
     private int stockCount = 0;
     private int traderCount = 0;
-
     private String name;
 
     private Stock[] listedStocks = new Stock[10];

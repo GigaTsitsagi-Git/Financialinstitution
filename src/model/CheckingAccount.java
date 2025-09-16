@@ -21,17 +21,11 @@ public class CheckingAccount extends Account {
         this.overdraftLimit = overdraftLimit;
     }
 
-    public boolean withdraw(BigDecimal amount) throws InsufficientFundsException {
-        if (getBalance().compareTo(amount) < 0) {
+    public void withdraw(BigDecimal amount) throws InsufficientFundsException {
+        if ((getBalance().add(overdraftLimit)).compareTo(amount) < 0) {
             throw new InsufficientFundsException("Not enough money in the account " + getAccountNumber());
         }
-        if (getBalance().add(overdraftLimit).compareTo(amount) >= 0) {
-            setBalance(getBalance().subtract(amount));
-            return true;
-        } else {
-            System.out.println("Insufficient funds including overdraft!");
-            return false;
-        }
+        System.out.println("Withdraw was success");
     }
 
     public boolean isOverdraftInUse() {

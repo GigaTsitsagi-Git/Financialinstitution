@@ -9,11 +9,13 @@ import java.util.Arrays;
 
 public class Bank {
 
+    private String name;
+
     private int customerCount = 0;
     private int currencyCount = 0;
     private int transactionCount = 0;
     private int employeeCount = 0;
-    private String name;
+
     private Customer[] customers = new Customer[10];
     private Currency[] currencies = new Currency[10];
     private Transaction[] transactions = new Transaction[10];
@@ -57,7 +59,6 @@ public class Bank {
         transactions[transactionCount] = transaction;
         transactionCount++;
     }
-
 
     public void printEmployees() {
         for (Employee employee : employees) {
@@ -114,15 +115,12 @@ public class Bank {
         return name;
     }
 
-
     public Customer[] getCustomers() {
         return customers;
     }
 
-
     public Transaction[] getTransactions() {
         return transactions;
     }
-
 
 }

@@ -10,12 +10,14 @@ public class FinancialInstitution {
 
     private static int institutionCount = 0;
 
-    private int bankCount = 0;
-    private int financialExchangeCount = 0;
+
     private String name;
     private String address;
     private LocalDate registrationDate;
     private LocalDateTime lastUpdated;
+
+    private int bankCount = 0;
+    private int financialExchangeCount = 0;
 
     private Bank[] banks = new Bank[10];
     private FinancialExchange[] financialExchanges = new FinancialExchange[10];

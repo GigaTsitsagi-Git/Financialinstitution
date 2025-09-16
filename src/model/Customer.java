@@ -12,9 +12,11 @@ public class Customer implements IMove, IStorable {
     private String customerId;
     private String name;
     private int age;
+
     private int creditCardCount = 0;
     private int accountCount = 0;
     private int loanCount = 0;
+
     private Loan[] loans = new Loan[10];
     private Account[] accounts = new Account[10];
     private CreditCard[] creditCards = new CreditCard[10];

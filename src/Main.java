@@ -1,4 +1,5 @@
 import Exceptions.InsufficientFundsException;
+import autocloseable.DatabaseConnection;
 import document.Contract;
 import document.Document;
 import document.Receipt;
@@ -19,7 +20,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         FinancialInstitution financialInstitution = new FinancialInstitution("Institution Name", "Tbilisi");
 
@@ -153,5 +154,11 @@ public class Main {
         reportGenerator.printDetails(person);
         reportGenerator.printDetails(bankEmployee);
         reportGenerator.printDetails(manager);
+
+        try(DatabaseConnection db = new DatabaseConnection("BankDb"))
+        {
+            db.executeQuery("SELECT * FROM Accounts");
+            db.executeQuery("SELECT * FROM Customers");
+        }
     }
 }
