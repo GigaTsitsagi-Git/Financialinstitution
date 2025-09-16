@@ -1,6 +1,6 @@
 package employee;
 
-import Exceptions.UnauthorizedActionException;
+import Exception.UnauthorizedActionException;
 
 import java.math.BigDecimal;
 

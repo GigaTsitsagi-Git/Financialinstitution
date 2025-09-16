@@ -1,4 +1,4 @@
-package Exceptions;
+package Exception;
 
 public class InsufficientFundsException extends Exception {
 

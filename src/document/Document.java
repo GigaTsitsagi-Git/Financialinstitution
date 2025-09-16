@@ -1,6 +1,6 @@
 package document;
 
-import interfaces.ITimestamped;
+import Interface.ITimestamped;
 
 import java.time.LocalDate;
 

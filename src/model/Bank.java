@@ -1,7 +1,7 @@
 package model;
 
-import Exceptions.CurrencyNotSupportedException;
-import Exceptions.UnderageCustomerException;
+import Exception.CurrencyNotSupportedException;
+import Exception.UnderageCustomerException;
 import employee.Employee;
 import transaction.Transaction;
 

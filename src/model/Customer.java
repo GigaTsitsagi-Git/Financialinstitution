@@ -1,8 +1,7 @@
 package model;
 
-import Exceptions.UnderageCustomerException;
-import interfaces.IMove;
-import interfaces.IStorable;
+import Interface.IMove;
+import Interface.IStorable;
 import transaction.Loan;
 
 import java.util.Arrays;

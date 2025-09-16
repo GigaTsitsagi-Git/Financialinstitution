@@ -1,4 +1,4 @@
-import Exceptions.InsufficientFundsException;
+import Exception.InsufficientFundsException;
 import autocloseable.DatabaseConnection;
 import document.Contract;
 import document.Document;
@@ -7,7 +7,7 @@ import employee.BankEmployee;
 import employee.Employee;
 import employee.Manager;
 import employee.Person;
-import interfaces.IPrint;
+import Interface.IPrint;
 import model.*;
 import service.ReportGenerator;
 import trading.Stock;
@@ -70,6 +70,8 @@ public class Main {
             checkingAccount.withdraw(new BigDecimal("2200"));
         } catch (InsufficientFundsException e) {
             System.out.println("Failed" + e.getMessage());
+        } finally {
+            System.out.println("Withdraw operation has ended");
         }
         // Link accounts to customers
         customerAlice.addAccount(accountAlice);
@@ -155,8 +157,7 @@ public class Main {
         reportGenerator.printDetails(bankEmployee);
         reportGenerator.printDetails(manager);
 
-        try(DatabaseConnection db = new DatabaseConnection("BankDb"))
-        {
+        try (DatabaseConnection db = new DatabaseConnection("BankDb")) {
             db.executeQuery("SELECT * FROM Accounts");
             db.executeQuery("SELECT * FROM Customers");
         }

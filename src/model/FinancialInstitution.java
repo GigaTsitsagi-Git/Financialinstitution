@@ -10,7 +10,6 @@ public class FinancialInstitution {
 
     private static int institutionCount = 0;
 
-
     private String name;
     private String address;
     private LocalDate registrationDate;

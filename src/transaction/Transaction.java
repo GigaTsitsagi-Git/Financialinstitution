@@ -1,6 +1,6 @@
 package transaction;
 
-import interfaces.ITransferMoney;
+import Interface.ITransferMoney;
 import model.Account;
 
 import java.math.BigDecimal;

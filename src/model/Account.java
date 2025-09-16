@@ -1,8 +1,8 @@
 package model;
 
-import Exceptions.InvalidAccountException;
-import interfaces.ICalculable;
-import interfaces.IStorable;
+import Exception.InvalidAccountException;
+import Interface.ICalculable;
+import Interface.IStorable;
 
 import java.math.BigDecimal;
 
