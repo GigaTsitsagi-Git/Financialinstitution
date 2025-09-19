@@ -5,69 +5,72 @@ import exception.UnderageCustomerException;
 import employee.Employee;
 import transaction.Transaction;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Bank {
 
     private String name;
 
-    private int customerCount = 0;
-    private int currencyCount = 0;
-    private int transactionCount = 0;
-    private int employeeCount = 0;
-
-    private Customer[] customers = new Customer[10];
-    private Currency[] currencies = new Currency[10];
-    private Transaction[] transactions = new Transaction[10];
-    private Employee[] employees = new Employee[10];
+    private List<Customer> customers;
+    private List<Currency> currencies;
+    private List<Transaction> transactions;
+    private List<Employee> employees;
 
     public Bank(String name) {
+        customers = new ArrayList<>();
+        currencies = new ArrayList<>();
+        transactions = new ArrayList<>();
+        employees = new ArrayList<>();
         this.name = name;
     }
 
     public void addEmployee(Employee employee) {
-        if (employeeCount == employees.length) {
-            employees = Arrays.copyOf(employees, customers.length * 2);
-        }
-        employees[customerCount] = employee;
-        employeeCount++;
+        employees.add(employee);
     }
 
     public void addCustomer(Customer customer) {
         if (customer.getAge() < 18) {
             throw new UnderageCustomerException("Customer must be at least 18 years old: " + customer.getAge());
         }
-        if (customerCount == customers.length) {
-            customers = Arrays.copyOf(customers, customers.length * 2);
-        }
-        customers[customerCount] = customer;
-        customerCount++;
+        customers.add(customer);
     }
 
     public void addCurrency(Currency currency) {
-        if (customerCount == currencies.length) {
-            currencies = Arrays.copyOf(currencies, currencies.length * 2);
-        }
-        currencies[customerCount] = currency;
-        currencyCount++;
+        currencies.add(currency);
     }
 
     public void addTransaction(Transaction transaction) {
-        if (transactionCount == transactions.length) {
-            transactions = Arrays.copyOf(transactions, transactions.length * 2);
-        }
-        transactions[transactionCount] = transaction;
-        transactionCount++;
+        transactions.add(transaction);
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public List<Currency> getCurrencies() {
+        return currencies;
+    }
+
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
     public void printEmployees() {
+        if (employees.isEmpty()) {
+            System.out.println("The list is empty");
+        }
         for (Employee employee : employees) {
             if (employee == null) continue;
             System.out.println(employee);
         }
     }
 
-    public final void showCurrencies() {
+    public final void printCurrencies() {
         for (Currency currency : currencies) {
             System.out.println(currency);
         }
@@ -87,6 +90,24 @@ public class Bank {
         }
     }
 
+    public Employee getFirstEmployee() {
+        return employees.getFirst();
+    }
+
+    public void removeCurrencyByIndex(int index) {
+        if (index > currencies.size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds Exception");
+        }
+        currencies.remove(index);
+    }
+
+    public Customer getCustomerByIndex(int index) {
+        if (index > customers.size()) {
+            throw new IndexOutOfBoundsException("Index out of range");
+        }
+        return customers.get(index);
+    }
+
     public void exchangeMoney(String currencyCode) {
         boolean found = false;
         for (Currency c : currencies) {
@@ -103,24 +124,7 @@ public class Bank {
         System.out.println("Exchanged into " + currencyCode);
     }
 
-    public Employee[] getEmployees() {
-        return employees;
-    }
-
-    public int getCurrencyCount() {
-        return currencyCount;
-    }
-
     public String getName() {
         return name;
     }
-
-    public Customer[] getCustomers() {
-        return customers;
-    }
-
-    public Transaction[] getTransactions() {
-        return transactions;
-    }
-
 }

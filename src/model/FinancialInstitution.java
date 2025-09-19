@@ -1,10 +1,14 @@
 package model;
 
+import employee.Employee;
 import transaction.FinancialExchange;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FinancialInstitution {
 
@@ -15,17 +19,15 @@ public class FinancialInstitution {
     private LocalDate registrationDate;
     private LocalDateTime lastUpdated;
 
-    private int bankCount = 0;
-    private int financialExchangeCount = 0;
-
-    private Bank[] banks = new Bank[10];
-    private FinancialExchange[] financialExchanges = new FinancialExchange[10];
+    private List<Bank> banks;
+    private Map<String, FinancialExchange> financialExchanges = new HashMap<>();
 
     public FinancialInstitution(String name, String address) {
         this.name = name;
         this.address = address;
         this.registrationDate = LocalDate.now();
         this.lastUpdated = LocalDateTime.now();
+        banks = new ArrayList<>();
         institutionCount++;
     }
 
@@ -35,19 +37,24 @@ public class FinancialInstitution {
     }
 
     public void addFinancialExchange(FinancialExchange financialExchange) {
-        if (financialExchangeCount == financialExchanges.length) {
-            financialExchanges = Arrays.copyOf(financialExchanges, financialExchanges.length * 2);
-        }
-        financialExchanges[financialExchangeCount] = financialExchange;
-        financialExchangeCount++;
+        financialExchanges.put(financialExchange.getName(), financialExchange);
     }
 
     public void addBank(Bank bank) {
-        if (bankCount == banks.length) {
-            banks = Arrays.copyOf(banks, banks.length * 2);
+        banks.add(bank);
+    }
+
+    public void printFinancialExchange() {
+        if (financialExchanges.isEmpty()) {
+            System.out.println("The list is empty");
         }
-        banks[bankCount] = bank;
-        bankCount++;
+        for (Map.Entry<String, FinancialExchange> financialExchangeEntry : financialExchanges.entrySet()) {
+            System.out.println(financialExchangeEntry.getKey() + " => " + financialExchangeEntry.getValue());
+        }
+    }
+
+    public FinancialExchange getFinancialExchangeWithKey(String key) {
+        return financialExchanges.get(key);
     }
 
     public void setName(String name) {

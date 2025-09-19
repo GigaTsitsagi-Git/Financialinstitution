@@ -4,7 +4,8 @@ import interfaces.IMove;
 import interfaces.IStorable;
 import transaction.Loan;
 
-import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Customer implements IMove, IStorable {
 
@@ -12,18 +13,38 @@ public class Customer implements IMove, IStorable {
     private String name;
     private int age;
 
-    private int creditCardCount = 0;
-    private int accountCount = 0;
-    private int loanCount = 0;
-
-    private Loan[] loans = new Loan[10];
-    private Account[] accounts = new Account[10];
-    private CreditCard[] creditCards = new CreditCard[10];
+    private Set<Loan> loans = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
+    private Set<CreditCard> creditCards = new HashSet<>();
 
     public Customer(String name, String customerId, int age) {
         this.name = name;
         this.customerId = customerId;
         this.age = age;
+    }
+
+    public void addAccount(Account account) {
+        accounts.add(account);
+    }
+
+    public void addLoan(Loan loan) {
+        loans.add(loan);
+    }
+
+    public void addCreditCard(CreditCard creditCard) {
+        creditCards.add(creditCard);
+    }
+
+    public Set<Loan> getLoans() {
+        return loans;
+    }
+
+    public Set<CreditCard> getCreditCards() {
+        return creditCards;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
     }
 
     public String getCustomerId() {
@@ -51,32 +72,11 @@ public class Customer implements IMove, IStorable {
     }
 
     public int getAccountCount() {
-        return accountCount;
+        return accounts.size();
     }
 
     public int getLoanCount() {
-        return loanCount;
-    }
-
-    public Account getAccauntByAccountNumber(String accountNumber) {
-        for (int i = 0; i < accountCount; i++) {
-            if (accounts[i].getAccountNumber().equals(accountNumber)) {
-                return accounts[i];
-            }
-        }
-        return null;
-    }
-
-    public void addAccount(Account account) {
-        if (accountCount == accounts.length) {
-            accounts = Arrays.copyOf(accounts, accounts.length * 2);
-        }
-        accounts[accountCount] = account;
-        accountCount++;
-    }
-
-    public Account[] getAccounts() {
-        return accounts;
+        return loans.size();
     }
 
     public void printAccounts() {
@@ -86,39 +86,20 @@ public class Customer implements IMove, IStorable {
         }
     }
 
-    public void addCreditCard(CreditCard creditCard) {
-        if (creditCardCount == creditCards.length) {
-            creditCards = Arrays.copyOf(creditCards, creditCardCount * 2);
-        }
-        creditCards[creditCardCount] = creditCard;
-        creditCardCount++;
-    }
-
-    public CreditCard[] getCreditCards() {
-        return creditCards;
-    }
-
-    public void addLoan(Loan loan) {
-        if (loanCount == loans.length) {
-            loans = Arrays.copyOf(loans, loans.length * 2);
-        }
-        loans[loanCount] = loan;
-        loanCount++;
-    }
-
-    public Loan[] getLoans() {
-        return loans;
-    }
-
     public void printLoans() {
         for (Loan loan : loans) {
             System.out.println(loan);
         }
     }
 
+    public Loan getFirstLoan()
+    {
+        return loans.iterator().next();
+    }
+
     @Override
     public String toString() {
-        return "Customer name: " + name + ", Accounts: " + accountCount;
+        return "Customer name: " + name + ", Accounts: " + accounts.size();
     }
 
     @Override
