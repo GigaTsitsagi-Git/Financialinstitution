@@ -9,6 +9,8 @@ import employee.Manager;
 import employee.Person;
 import interfaces.IPrint;
 import model.*;
+import service.AccountPrinter;
+import service.Notifier;
 import service.ReportGenerator;
 import trading.Stock;
 import trading.Trader;
@@ -161,5 +163,16 @@ public class Main {
             db.executeQuery("SELECT * FROM Accounts");
             db.executeQuery("SELECT * FROM Customers");
         }
+
+        AccountPrinter<Account> accountPrinter = new AccountPrinter<>(accountAlice);
+        AccountPrinter<SavingsAccount> savingsAccountPrinter = new AccountPrinter<>(savingsAccount);
+        accountPrinter.printAccount();
+        savingsAccountPrinter.printAccount();
+
+        Notifier<Customer> customerNotifier = new Notifier<>(customerBob, "Hello");
+        System.out.println(customerNotifier);
+
+        Notifier<Account> accountNotifier = new Notifier<>(checkingAccount, "Good balance");
+        System.out.println(accountNotifier);
     }
 }

@@ -1,7 +1,6 @@
 package employee;
 
 import exception.UnauthorizedActionException;
-
 import java.math.BigDecimal;
 
 public class BankEmployee extends Employee {

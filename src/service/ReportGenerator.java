@@ -11,8 +11,7 @@ public class ReportGenerator {
     public void genererateCustomerReport(Customer customer) {
         System.out.println("--- Customer Report for " + customer.getName() + " ---");
         Set<Account> accounts = customer.getAccounts();
-        for(Account account : accounts)
-        {
+        for (Account account : accounts) {
             System.out.println("Account: " + account.getAccountNumber() + " | Balance: " + account.getBalance());
 
         }

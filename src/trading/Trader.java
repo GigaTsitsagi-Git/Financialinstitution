@@ -31,8 +31,7 @@ public class Trader {
         if (customer != null && customer.getAccounts() != null) {
             System.out.println("Accounts for customer " + customer.getName() + ":");
             Set<Account> accaunts = customer.getAccounts();
-            for(Account account : accaunts)
-            {
+            for (Account account : accaunts) {
                 System.out.println(" - " + account.getAccountNumber() + " : " + account.getBalance());
             }
         } else {

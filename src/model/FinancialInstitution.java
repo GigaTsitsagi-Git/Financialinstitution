@@ -1,6 +1,5 @@
 package model;
 
-import employee.Employee;
 import transaction.FinancialExchange;
 
 import java.time.LocalDate;

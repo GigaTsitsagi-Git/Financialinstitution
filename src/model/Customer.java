@@ -92,8 +92,7 @@ public class Customer implements IMove, IStorable {
         }
     }
 
-    public Loan getFirstLoan()
-    {
+    public Loan getFirstLoan() {
         return loans.iterator().next();
     }
 
