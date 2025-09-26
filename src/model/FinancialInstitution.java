@@ -4,10 +4,7 @@ import transaction.FinancialExchange;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class FinancialInstitution {
 
@@ -80,5 +77,22 @@ public class FinancialInstitution {
 
     public String getAddress() {
         return this.address;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address, registrationDate);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        FinancialInstitution that = (FinancialInstitution) obj;
+
+        return name.equals(that.name)
+                && address.equals(that.address)
+                && registrationDate.equals(that.registrationDate);
     }
 }

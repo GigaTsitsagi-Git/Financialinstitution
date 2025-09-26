@@ -8,7 +8,11 @@ import employee.Employee;
 import employee.Manager;
 import employee.Person;
 import interfaces.IPrint;
+import interfaces.functional.IAccountOperation;
+import interfaces.functional.ICustomerNotifier;
+import interfaces.functional.ILoanEvaluator;
 import model.*;
+import record.ExchangeRate;
 import service.AccountPrinter;
 import service.Notifier;
 import service.ReportGenerator;
@@ -17,9 +21,12 @@ import trading.Trader;
 import transaction.FinancialExchange;
 import transaction.Loan;
 import transaction.Transaction;
+import enums.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.function.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -174,5 +181,89 @@ public class Main {
 
         Notifier<Account> accountNotifier = new Notifier<>(checkingAccount, "Good balance");
         System.out.println(accountNotifier);
+
+        List<Customer> customers = List.of(
+                new Customer("nika", "C007", 25),
+                new Customer("giga", "C008", 21),
+                new Customer("salome", "C009", 17)
+        );
+
+        Predicate<Customer> isAdult = c -> c.getAge() >= 18;
+        customers.forEach(c -> System.out.println(c.getName() + " adult? " + isAdult.test(c)));
+
+        Function<Customer, String> getName = Customer::getName;
+        customers.forEach(c -> System.out.println("Name: " + getName.apply(c)));
+
+        Consumer<Customer> printCustomer = c -> System.out.println("Customer: " + c);
+        customers.forEach(printCustomer);
+
+        Supplier<BigDecimal> defaultBalance = () -> BigDecimal.valueOf(1000);
+        System.out.println("Default balance: " + defaultBalance.get());
+
+        UnaryOperator<BigDecimal> addInterest = bal -> bal.multiply(BigDecimal.valueOf(1.05));
+        System.out.println("Balance after interest: " + addInterest.apply(new BigDecimal("1000")));
+
+        IAccountOperation deposit = (balance, amount) -> balance.add(amount);
+        IAccountOperation withdraw = (balance, amount) ->
+                balance.compareTo(amount) >= 0 ? balance.subtract(amount) : balance;
+
+        BigDecimal balance = new BigDecimal("1000");
+        balance = deposit.apply(balance, new BigDecimal("200"));
+        balance = withdraw.apply(balance, new BigDecimal("500"));
+
+        ICustomerNotifier emailNotifier = (customer, msg) ->
+                System.out.println("Email to " + customer.getName() + ": " + msg);
+
+        Customer c = new Customer("C001", "Alice", 25);
+        emailNotifier.notify(c, "Your account balance is below minimum!");
+
+        ILoanEvaluator simpleEvaluator = (customer, amount) ->
+                customer.getAge() >= 18 && amount.compareTo(new BigDecimal("5000")) <= 0;
+
+        Customer c1 = new Customer("C011", "Zura", 25);
+        Customer c2 = new Customer("C012", "akaki", 17);
+
+        System.out.println("Alice loan approved? " + simpleEvaluator.approve(c1, new BigDecimal("3000")));
+        System.out.println("Bob loan approved? " + simpleEvaluator.approve(c2, new BigDecimal("3000")));
+
+        System.out.println();
+
+        CurrencyType usd = CurrencyType.USD;
+        System.out.println("Currency: " + usd);
+        System.out.println("Symbol: " + usd.getSymbol());
+        System.out.println("format: " + usd.formatAmount(new BigDecimal("1000")));
+        System.out.println();
+
+        AccountType savings = AccountType.SAVINGS;
+        System.out.println("Account type: " + savings);
+        System.out.println("Daily interest rate on 1000 = " + savings.calculateInterest(1000));
+        System.out.println();
+
+        TransactionStatus status = TransactionStatus.PENDING;
+        System.out.println("Status: " + status);
+        System.out.println("Description: " + status.getDescription());
+        System.out.println("Is final? " + status.isFinalStatus());
+
+        status = TransactionStatus.COMPLETED;
+        System.out.println("Updated status: " + status);
+        System.out.println("Is final? " + status.isFinalStatus());
+        System.out.println();
+
+        double baseRate = 0.05; // 5% base interest
+        RiskLevel risk = RiskLevel.HIGH;
+        System.out.println("Risk: " + risk);
+        System.out.println("Description: " + risk.getDescription());
+        System.out.println("Penalty rate: " + risk.getPenaltyRate());
+        System.out.println("Adjusted loan rate: " + risk.adjustLoanInterest(baseRate));
+        System.out.println();
+
+        ExchangeRate usdToEur = new ExchangeRate("USD", "EUR", new BigDecimal("0.92"));
+
+        System.out.println("From: " + usdToEur.fromCurrency());
+        System.out.println("To: " + usdToEur.toCurrency());
+        System.out.println("Rate: " + usdToEur.rate());
+
+        BigDecimal result = usdToEur.convert(new BigDecimal("100"));
+        System.out.println("100 " + usdToEur.fromCurrency() + " = " + result + " " + usdToEur.toCurrency());
     }
 }
