@@ -5,6 +5,7 @@ import interfaces.IStorable;
 import transaction.Loan;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Customer implements IMove, IStorable {
@@ -80,16 +81,15 @@ public class Customer implements IMove, IStorable {
     }
 
     public void printAccounts() {
-        for (Account account : accounts) {
-            if (account == null) continue;
-            System.out.println(account);
-        }
+        accounts.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public void printLoans() {
-        for (Loan loan : loans) {
-            System.out.println(loan);
-        }
+        loans.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public Loan getFirstLoan() {

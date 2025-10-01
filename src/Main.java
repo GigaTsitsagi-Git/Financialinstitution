@@ -49,17 +49,30 @@ public class Main {
         bank.addCustomer(customerAlice);
         //bank.addCustomer(ExceptionCustomer);
 
+        CurrencyType usd = CurrencyType.USD;
+        System.out.println("Currency: " + usd);
+        System.out.println("Symbol: " + usd.getSymbol());
+        System.out.println("format: " + usd.formatAmount(new BigDecimal("1000")));
+        System.out.println();
+
+        AccountType savings = AccountType.SAVINGS;
+        System.out.println("Account type: " + savings);
+        System.out.println("Daily interest rate on 1000 = " + savings.calculateInterest(1000));
+        System.out.println();
+
         // Create accounts
-        Account accountAlice = new Account("ACC001", new BigDecimal("1000.0"));
-        Account accountBob = new Account("ACC002", new BigDecimal("500.0"));
+        Account accountAlice = new Account("ACC001", savings, usd, new BigDecimal("1000.0"));
+        Account accountBob = new Account("ACC002", savings, usd, new BigDecimal("500.0"));
         //Account exceptionAcc = new Account("", new BigDecimal("1000.0"));
 
         // Creating Credit card
         CreditCard creditCard = new CreditCard("C000111222", LocalDate.now(), "123");
         customerBob.addCreditCard(creditCard);
 
+        RiskLevel risk = RiskLevel.HIGH;
+        LoanType loanType = LoanType.PERSONAL;
         //Creating Loan
-        Loan loan = new Loan(customerAlice, new BigDecimal("500"), new BigDecimal("12.5"));
+        Loan loan = new Loan(customerAlice, new BigDecimal("500"), new BigDecimal("12.5"), loanType ,risk);
         customerAlice.addLoan(loan);
 
         //Creating Currency
@@ -228,16 +241,6 @@ public class Main {
 
         System.out.println();
 
-        CurrencyType usd = CurrencyType.USD;
-        System.out.println("Currency: " + usd);
-        System.out.println("Symbol: " + usd.getSymbol());
-        System.out.println("format: " + usd.formatAmount(new BigDecimal("1000")));
-        System.out.println();
-
-        AccountType savings = AccountType.SAVINGS;
-        System.out.println("Account type: " + savings);
-        System.out.println("Daily interest rate on 1000 = " + savings.calculateInterest(1000));
-        System.out.println();
 
         TransactionStatus status = TransactionStatus.PENDING;
         System.out.println("Status: " + status);
@@ -250,7 +253,6 @@ public class Main {
         System.out.println();
 
         double baseRate = 0.05; // 5% base interest
-        RiskLevel risk = RiskLevel.HIGH;
         System.out.println("Risk: " + risk);
         System.out.println("Description: " + risk.getDescription());
         System.out.println("Penalty rate: " + risk.getPenaltyRate());
@@ -265,5 +267,15 @@ public class Main {
 
         BigDecimal result = usdToEur.convert(new BigDecimal("100"));
         System.out.println("100 " + usdToEur.fromCurrency() + " = " + result + " " + usdToEur.toCurrency());
+
+
+        accountBob.executeOperation(new BigDecimal("500"),
+                (newBalance, amount) -> newBalance.add(amount));
+
+        accountBob.executeOperation(new BigDecimal("200"),
+                (newBalance, amount) -> newBalance.subtract(amount));
+
+        accountBob.executeOperation(BigDecimal.ZERO,
+                (newBalance, amount) -> newBalance.multiply(BigDecimal.valueOf(1.05)));
     }
 }

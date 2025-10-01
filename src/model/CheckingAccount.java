@@ -1,5 +1,7 @@
 package model;
 
+import enums.AccountType;
+import enums.CurrencyType;
 import exception.InsufficientFundsException;
 
 import java.math.BigDecimal;
@@ -9,7 +11,7 @@ public class CheckingAccount extends Account {
     private BigDecimal overdraftLimit;
 
     public CheckingAccount(String accountNumber, BigDecimal balance, BigDecimal overdraftLimit) {
-        super(accountNumber, balance);
+        super(accountNumber, AccountType.BUSINESS, CurrencyType.USD, balance);
         this.overdraftLimit = overdraftLimit;
     }
 

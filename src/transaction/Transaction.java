@@ -1,5 +1,6 @@
 package transaction;
 
+import enums.TransactionStatus;
 import interfaces.ITransferMoney;
 import model.Account;
 
@@ -11,12 +12,14 @@ public class Transaction implements ITransferMoney {
     private Account from;
     private Account to;
     private BigDecimal amount;
+    private TransactionStatus transactionStatus;
 
     public Transaction(Account from, Account to, BigDecimal amount, String message) {
         this.from = from;
         this.to = to;
         this.amount = amount;
         this.message = message;
+        this.transactionStatus = TransactionStatus.PENDING; // default value
         if (this.from.getBalance().compareTo(amount) > 0) {
             this.from.setBalance(this.from.getBalance().subtract(amount));
             this.to.setBalance(this.to.getBalance().add(amount));

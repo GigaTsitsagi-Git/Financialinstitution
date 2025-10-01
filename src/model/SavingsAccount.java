@@ -1,5 +1,8 @@
 package model;
 
+import enums.AccountType;
+import enums.CurrencyType;
+
 import java.math.BigDecimal;
 
 public class SavingsAccount extends Account {
@@ -7,7 +10,7 @@ public class SavingsAccount extends Account {
     private BigDecimal interestRate;
 
     public SavingsAccount(String accountNumber, BigDecimal balance, BigDecimal interestRate) {
-        super(accountNumber, balance);
+        super(accountNumber, AccountType.BUSINESS, CurrencyType.USD, balance);
         this.interestRate = interestRate;
     }
 

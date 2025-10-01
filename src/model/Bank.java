@@ -7,6 +7,7 @@ import transaction.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Bank {
 
@@ -64,30 +65,27 @@ public class Bank {
         if (employees.isEmpty()) {
             System.out.println("The list is empty");
         }
-        for (Employee employee : employees) {
-            if (employee == null) continue;
-            System.out.println(employee);
-        }
+        employees.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public final void printCurrencies() {
-        for (Currency currency : currencies) {
-            System.out.println(currency);
-        }
+        currencies.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public void printCustomers() {
-        for (Customer customer : customers) {
-            if (customer == null) continue;
-            System.out.println(customer);
-        }
+        customers.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public void printTransactions() {
-        for (Transaction transaction : transactions) {
-            if (transaction == null) continue;
-            System.out.println(transaction);
-        }
+        transactions.stream()
+                .filter(Objects::nonNull)
+                .forEach(System.out::println);
     }
 
     public Employee getFirstEmployee() {
